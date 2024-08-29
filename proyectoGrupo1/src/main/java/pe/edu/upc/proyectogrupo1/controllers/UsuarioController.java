@@ -30,5 +30,16 @@ public class UsuarioController {
         Usuario u=m.map(dto,Usuario.class);
         uS.insert(u);
     }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id) {
+        uS.delete(id);
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody UsuarioDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Usuario d = m.map(dto, Usuario.class);
+        uS.update(d);
+    }
 
 }

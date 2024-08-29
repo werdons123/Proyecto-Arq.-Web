@@ -21,5 +21,12 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void insert(Usuario u) {
         uR.save(u);
     }
+    @Override
+    public void delete(int id_usuario) {uR.deleteById(id_usuario);
+    }
+    @Override
+    public void update(Usuario u) {
+        uR.save(u);
+    }
 
 }
