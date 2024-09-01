@@ -24,6 +24,13 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
+    @GetMapping ("/{id}")
+    public UsuarioDTO listID(@PathVariable("id") Integer id){
+        ModelMapper m =new ModelMapper();
+        UsuarioDTO dto = m.map(uS.listID(id),UsuarioDTO.class);
+        return dto;
+    }
+
     @PostMapping
     public void insertarUsuario(@RequestBody UsuarioDTO dto){
         ModelMapper m =new ModelMapper();
