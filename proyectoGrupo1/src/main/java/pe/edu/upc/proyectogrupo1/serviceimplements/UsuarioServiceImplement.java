@@ -34,5 +34,4 @@ public class UsuarioServiceImplement implements IUsuarioService {
         uR.save(u);
     }
 
-
 }
