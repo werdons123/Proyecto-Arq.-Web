@@ -1,5 +1,7 @@
 package pe.edu.upc.proyectogrupo1.dtos;
 
+import pe.edu.upc.proyectogrupo1.entities.Rol;
+
 import java.time.LocalDate;
 
 public class UsuarioDTO {
@@ -13,6 +15,7 @@ public class UsuarioDTO {
     private String telefono;
     private String username;
     private String password;
+    private Rol ro;
 
     public int getId_usuario() {
         return id_usuario;
@@ -94,4 +97,11 @@ public class UsuarioDTO {
         this.password = password;
     }
 
+    public Rol getRo() {
+        return ro;
+    }
+
+    public void setRo(Rol ro) {
+        this.ro = ro;
+    }
 }

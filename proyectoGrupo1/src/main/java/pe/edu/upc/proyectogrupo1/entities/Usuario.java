@@ -37,7 +37,13 @@ public class Usuario {
     @Column(name = "password", nullable=false, length = 20)
     private String password;
 
-    public Usuario(int id_usuario, String nombre, String apellidos, LocalDate fechanacimiento, String correo, String ruc, String direccion, String telefono, String username, String password) {
+    @ManyToOne
+    @JoinColumn(name = "idRol")
+    private Rol ro;
+
+
+
+    public Usuario(int id_usuario, String nombre, String apellidos, LocalDate fechanacimiento, String correo, String ruc, String direccion, String telefono, String username, String password, Rol ro) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -48,6 +54,7 @@ public class Usuario {
         this.telefono = telefono;
         this.username = username;
         this.password = password;
+        this.ro = ro;
     }
 
     public Usuario() {
@@ -133,4 +140,11 @@ public class Usuario {
         this.password = password;
     }
 
+    public Rol getRo() {
+        return ro;
+    }
+
+    public void setRo(Rol ro) {
+        this.ro = ro;
+    }
 }
