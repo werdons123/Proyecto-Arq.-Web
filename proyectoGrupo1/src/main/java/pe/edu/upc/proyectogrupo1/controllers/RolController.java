@@ -28,7 +28,7 @@ public class RolController {
         Rol r=m.map(dto,Rol.class);
         rS.insert(r);
     }
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public RolDTO buscarPorId(@RequestParam ("id") Integer id){
         ModelMapper m=new ModelMapper();
         RolDTO dto=m.map(rS.listId(id),RolDTO.class);
