@@ -7,6 +7,8 @@ public class ContactoAyudaDTO {
     private String descripcion;
     private String telefono;
 
+
+
     public int getIdContactoAyuda() {
         return idContactoAyuda;
     }
