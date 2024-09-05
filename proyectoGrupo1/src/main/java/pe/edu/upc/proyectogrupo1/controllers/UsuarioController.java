@@ -3,10 +3,12 @@ package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.proyectogrupo1.dtos.QuantityAlertsByUserDTO;
 import pe.edu.upc.proyectogrupo1.dtos.UsuarioDTO;
 import pe.edu.upc.proyectogrupo1.entities.Usuario;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IUsuarioService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +49,20 @@ public class UsuarioController {
         ModelMapper m = new ModelMapper();
         Usuario d = m.map(dto, Usuario.class);
         uS.update(d);
+    }
+
+    @GetMapping("/cantidadesalertas")
+    public List<QuantityAlertsByUserDTO> cantidadAlertasController(){
+        List<String[]> lista = uS.cantidadalertaservice();
+        List<QuantityAlertsByUserDTO>listaDTO=new ArrayList<>();
+        for (String[] columna:lista){
+            QuantityAlertsByUserDTO dto=new QuantityAlertsByUserDTO();
+            dto.setNombre(columna[0]);
+            dto.setApellidos(columna[1]);
+            dto.setQuantityAlertsByUser(Integer.parseInt(columna[2]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 
 }

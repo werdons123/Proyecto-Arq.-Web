@@ -34,4 +34,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
         uR.save(u);
     }
 
+    @Override
+    public List<String[]> cantidadalertaservice() {
+        return uR.cantidadalerta();
+    }
+
 }

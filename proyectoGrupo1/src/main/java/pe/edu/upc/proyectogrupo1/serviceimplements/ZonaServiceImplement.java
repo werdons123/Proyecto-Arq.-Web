@@ -40,4 +40,9 @@ public class ZonaServiceImplement implements IZonaService{
     public int contar(){
         return vR.contar();
     }
+
+    @Override
+    public List<String[]> cantidadAlertaservice() {
+        return vR.cantidadAlerta();
+    }
 }

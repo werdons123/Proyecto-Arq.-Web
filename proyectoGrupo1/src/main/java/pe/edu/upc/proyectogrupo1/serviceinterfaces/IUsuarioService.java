@@ -10,5 +10,7 @@ public interface IUsuarioService {
     public void insert(Usuario u);
     public void delete(int id_usuario);
     public void update(Usuario u);
+    public List<String[]> cantidadalertaservice();
+
 
 }
