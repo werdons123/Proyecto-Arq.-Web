@@ -22,4 +22,9 @@ public class ZonaContactoAyudaImplement implements IZonaContactoAyudaService {
     public void insert(ZonaContactoAyuda zca) {
         zcaR.save(zca);
     }
+
+    @Override
+    public List<String[]> findByNombreZona(String nombreZona) {
+        return zcaR.findByNombreZona(nombreZona);
+    }
 }

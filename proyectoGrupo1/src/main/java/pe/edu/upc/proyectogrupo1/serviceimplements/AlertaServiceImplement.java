@@ -20,5 +20,8 @@ public class AlertaServiceImplement implements IAlertaService {
     public void delete(int id_alerta){aR.deleteById(id_alerta);}
     @Override
     public void update(Alerta alerta){aR.save(alerta);}
-
+    @Override
+    public List<String[]> cantidad() {
+        return aR.cantidad();
+    }
 }

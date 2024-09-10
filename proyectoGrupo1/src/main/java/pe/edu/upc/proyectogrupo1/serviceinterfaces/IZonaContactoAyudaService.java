@@ -7,4 +7,5 @@ import java.util.List;
 public interface IZonaContactoAyudaService {
     public List<ZonaContactoAyuda> list();
     public void insert(ZonaContactoAyuda zca);
+    public List<String[]> findByNombreZona(String nombreZona);
 }
