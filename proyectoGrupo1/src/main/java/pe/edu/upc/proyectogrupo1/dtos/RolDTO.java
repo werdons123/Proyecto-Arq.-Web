@@ -1,10 +1,12 @@
 package pe.edu.upc.proyectogrupo1.dtos;
 
-import jakarta.persistence.Column;
+import pe.edu.upc.proyectogrupo1.entities.Usuario;
+
 
 public class RolDTO {
     private int idRol;
     private String tipoRol;
+    private Usuario us;
 
     public int getIdRol() {
         return idRol;
@@ -20,5 +22,13 @@ public class RolDTO {
 
     public void setTipoRol(String tipoRol) {
         this.tipoRol = tipoRol;
+    }
+
+    public Usuario getUs() {
+        return us;
+    }
+
+    public void setUs(Usuario us) {
+        this.us = us;
     }
 }

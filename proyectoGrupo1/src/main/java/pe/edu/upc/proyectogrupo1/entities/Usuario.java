@@ -1,11 +1,15 @@
 package pe.edu.upc.proyectogrupo1.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table (name = "Usuario")
 
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_usuario;
@@ -31,19 +35,18 @@ public class Usuario {
     @Column(name = "telefono", nullable=false, length = 12)
     private String telefono;
 
-    @Column(name = "username", nullable=false, length = 20)
+    @Column(name = "username", unique = true, length = 20)
     private String username;
 
-    @Column(name = "password", nullable=false, length = 20)
+    @Column(name = "password", nullable=false, length = 60)
     private String password;
-
-    @ManyToOne
+    private Boolean enabled;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "idRol")
-    private Rol ro;
+    private List<Rol>roles;
 
-
-
-    public Usuario(int id_usuario, String nombre, String apellidos, LocalDate fechanacimiento, String correo, String ruc, String direccion, String telefono, String username, String password, Rol ro) {
+    public Usuario(int id_usuario, String nombre, String apellidos, LocalDate fechanacimiento, String correo, String ruc, String direccion, String telefono, String username, String password, Boolean enabled, List<Rol> roles) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -54,7 +57,8 @@ public class Usuario {
         this.telefono = telefono;
         this.username = username;
         this.password = password;
-        this.ro = ro;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
     public Usuario() {
@@ -140,11 +144,19 @@ public class Usuario {
         this.password = password;
     }
 
-    public Rol getRo() {
-        return ro;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setRo(Rol ro) {
-        this.ro = ro;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }

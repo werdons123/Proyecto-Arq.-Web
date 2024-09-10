@@ -3,13 +3,10 @@ package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.proyectogrupo1.dtos.QuantityUsuarioByAlertaDTO;
-import pe.edu.upc.proyectogrupo1.dtos.QuantityUsuarioByRolDTO;
 import pe.edu.upc.proyectogrupo1.dtos.UsuarioDTO;
 import pe.edu.upc.proyectogrupo1.entities.Usuario;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IUsuarioService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,32 +48,5 @@ public class UsuarioController {
         Usuario d = m.map(dto, Usuario.class);
         uS.update(d);
     }
-    @GetMapping("/cantidad")
-    public List<QuantityUsuarioByAlertaDTO> usuarioporalerta(){
-        List<String[]> lista = uS.usuarioporalerta();
-        List<QuantityUsuarioByAlertaDTO> listaDTO = new ArrayList<>();
-        for(String[] columna:lista){
-            QuantityUsuarioByAlertaDTO dto = new QuantityUsuarioByAlertaDTO();
-            dto.setId_usuario(Integer.parseInt(columna[0]));
-            dto.setQuantity(Integer.parseInt(columna[1]));
-            listaDTO.add(dto);
-        }
-        return listaDTO;
-
-    }
-    @GetMapping("/cantidadusuario_rol")
-    public List<QuantityUsuarioByRolDTO> usuarioporrol(){
-        List<String[]> lista = uS.usuarioporrol();
-        List<QuantityUsuarioByRolDTO> listaDTO = new ArrayList<>();
-        for(String[] columna:lista){
-            QuantityUsuarioByRolDTO dto= new QuantityUsuarioByRolDTO();
-            dto.setId_usuario(Integer.parseInt(columna[0]));
-            dto.setQuantity(Integer.parseInt(columna[1]));
-            listaDTO.add(dto);
-        }
-        return listaDTO;
-
-    }
-
 
 }
