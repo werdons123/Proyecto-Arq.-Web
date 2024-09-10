@@ -10,7 +10,6 @@ import pe.edu.upc.proyectogrupo1.dtos.UsuarioDTO;
 import pe.edu.upc.proyectogrupo1.entities.Usuario;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IUsuarioService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
