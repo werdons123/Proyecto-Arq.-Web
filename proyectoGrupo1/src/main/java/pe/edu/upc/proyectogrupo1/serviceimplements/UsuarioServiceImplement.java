@@ -44,4 +44,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return uR.usuarioporrol();
     }
 
+    @Override
+    public List<String[]> cantidadalertaservice() {
+        return uR.cantidadalerta();
+    }
+
 }

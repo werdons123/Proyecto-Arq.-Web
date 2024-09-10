@@ -12,5 +12,7 @@ public interface IUsuarioService {
     public void update(Usuario u);
     public List<String[]> usuarioporalerta();
     public List<String[]>usuarioporrol();
+    public List<String[]> cantidadalertaservice();
+
 
 }

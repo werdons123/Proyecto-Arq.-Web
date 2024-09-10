@@ -11,6 +11,7 @@ public interface IZonaService {
     public void update(Zona zona);
     public List<Zona> buscar(String zona);
     public int contar();
+    public List<String[]> cantidadAlertaservice();
 
 
 
