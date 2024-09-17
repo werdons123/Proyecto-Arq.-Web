@@ -1,8 +1,8 @@
 FROM amazoncorretto:21
 WORKDIR /app
-COPY pom.xml ./
+COPY proyectoGrupo1/pom.xml .
 RUN mvn dependency:resolve
-COPY src ./src
+COPY . .
 RUN mvn package
 ARG JAR_FILE=target/proyectoGrupo1-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app_proyectoGrupo1.jar
