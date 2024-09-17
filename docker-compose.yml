@@ -5,9 +5,9 @@ services:
     image: postgres:14
     container_name: postgres-db
     environment:
-      POSTGRES_DB: bdPGrupo1  # Nombre de la base de datos que deseas crear
-      POSTGRES_USER: postgres    # Usuario para acceder a la base de datos
-      POSTGRES_PASSWORD: 1234  # Contraseña del usuario
+      POSTGRES_DB: dbpgrupo1  # Nombre de la base de datos que deseas crear
+      POSTGRES_USER: dbpgrupo1_user    # Usuario para acceder a la base de datos
+      POSTGRES_PASSWORD: 8dQdrbwPIHmhXuQUsmxPJI6CKTUgDQn1  # Contraseña del usuario
     ports:
       - "5432:5432"  # Exponemos el puerto 5432 para conexión externa
   
@@ -15,9 +15,9 @@ services:
     image: myapp:latest  # Imagen de tu aplicación Spring Boot
     container_name: spring-app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bdPGrupo1  # URL de conexión usando el nombre del servicio 'db'
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbpgrupo1_user:8dQdrbwPIHmhXuQUsmxPJI6CKTUgDQn1@dpg-crkgeuogph6c73c9s340-a.oregon-postgres.render.com/dbpgrupo1  # URL de conexión usando el nombre del servicio 'db'
+      SPRING_DATASOURCE_USERNAME: dbpgrupo1_user
+      SPRING_DATASOURCE_PASSWORD: 8dQdrbwPIHmhXuQUsmxPJI6CKTUgDQn1
     ports:
       - "8080:8080"  # Puerto donde se expone tu aplicación
     depends_on:
