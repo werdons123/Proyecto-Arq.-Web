@@ -15,9 +15,9 @@ services:
     image: myapp:latest  # Imagen de tu aplicación Spring Boot
     container_name: spring-app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://dbpgrupo1_user:8dQdrbwPIHmhXuQUsmxPJI6CKTUgDQn1@dpg-crkgeuogph6c73c9s340-a.oregon-postgres.render.com/dbpgrupo1  # URL de conexión usando el nombre del servicio 'db'
-      SPRING_DATASOURCE_USERNAME: dbpgrupo1_user
-      SPRING_DATASOURCE_PASSWORD: 8dQdrbwPIHmhXuQUsmxPJI6CKTUgDQn1
+      DB_URL: jdbc:postgresql://dbpgrupo1_user:8dQdrbwPIHmhXuQUsmxPJI6CKTUgDQn1@dpg-crkgeuogph6c73c9s340-a.oregon-postgres.render.com/dbpgrupo1  # URL de conexión usando el nombre del servicio 'db'
+      DB_USERNAME: dbpgrupo1_user
+      DB_PASSWORD: 8dQdrbwPIHmhXuQUsmxPJI6CKTUgDQn1
     ports:
       - "8080:8080"  # Puerto donde se expone tu aplicación
     depends_on:
