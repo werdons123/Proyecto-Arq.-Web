@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk
+FROM amazoncorretto:21
 WORKDIR /app
 COPY ./pom.xml .
 RUN mvn dependency:resolve
