@@ -1,4 +1,5 @@
 FROM openjdk:21-jdk
+WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:resolve
 COPY . .
