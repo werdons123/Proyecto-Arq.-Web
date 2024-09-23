@@ -42,4 +42,11 @@ public class SimulacroController {
     }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Integer id) { siS.delete(id); }
+    @GetMapping
+    public List<SimulacroDTO> buscarPorNombre(@RequestParam("nombre") String nombre) {
+        return siS.list().stream().map(x->{
+            ModelMapper m = new ModelMapper();
+            return m.map(x,SimulacroDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

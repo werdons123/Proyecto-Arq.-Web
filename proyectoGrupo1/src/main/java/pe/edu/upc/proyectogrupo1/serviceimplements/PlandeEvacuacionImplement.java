@@ -39,4 +39,9 @@ public class PlandeEvacuacionImplement implements IPlan_de_EvacuacionService {
         return pR.findById(id).orElse(new Plan_de_Evacuacion());
     }
 
+    @Override
+    public List<Plan_de_Evacuacion> buscarPorNombre(String nombre) {
+        return pR.buscarPorNombre(nombre);
+    }
+
 }

@@ -3,6 +3,7 @@ package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.proyectogrupo1.dtos.ConsejoDTO;
 import pe.edu.upc.proyectogrupo1.dtos.ZonaAlertaDTO;
 import pe.edu.upc.proyectogrupo1.entities.ZonaAlerta;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IZonaAlertaService;
@@ -16,11 +17,10 @@ public class ZonaAlertaController {
     @Autowired
     private IZonaAlertaService aS;
     @GetMapping()
-    public List<ZonaAlerta> list(){
+    public List<ZonaAlertaDTO> list(){
         return aS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x, ZonaAlerta.class);
-
+            return m.map(x, ZonaAlertaDTO.class);
         }).collect(Collectors.toList());
 
     }

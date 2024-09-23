@@ -34,4 +34,19 @@ public class UsuarioServiceImplement implements IUsuarioService {
         uR.save(u);
     }
 
+    @Override
+    public List<String[]> usuarioporalerta() {
+        return uR.usuarioporalerta();
+    }
+
+    @Override
+    public List<Usuario> usuarioporrol() {
+        return uR.usuarioporrol();
+    }
+
+    @Override
+    public List<String[]> cantidadalertaservice() {
+        return uR.cantidadalerta();
+    }
+
 }

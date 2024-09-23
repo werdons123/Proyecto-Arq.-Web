@@ -1,9 +1,11 @@
 package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.ConsejoDTO;
 import pe.edu.upc.proyectogrupo1.entities.Consejo;
+import pe.edu.upc.proyectogrupo1.entities.Plan_de_Evacuacion;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IConsejoService;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class ConsejoController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('CLIENTE')")
     public void insertar(@RequestBody ConsejoDTO dto){
         ModelMapper m = new ModelMapper();
         Consejo c = m.map(dto,Consejo.class);
@@ -36,6 +39,15 @@ public class ConsejoController {
         ModelMapper m = new ModelMapper();
         Consejo co = m.map(dto, Consejo.class);
         cS.update(co);
+    }
+    @GetMapping("/planesdeevacionporzona")
+    public List<ConsejoDTO> consejosportipodedesastre(@RequestParam String tipo)
+    {
+        return cS.buscarPorTipo(tipo).stream().map(x->{
+            ModelMapper m = new ModelMapper();
+            return m.map(x,ConsejoDTO.class);
+        }).collect(Collectors.toList());
+
     }
 
 }

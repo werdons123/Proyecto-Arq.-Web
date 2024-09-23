@@ -14,5 +14,10 @@ public interface IZonaRepository extends JpaRepository<Zona,Integer> {
     public List<Zona> buscarPorNombre(@Param("nombre") String nombre);
     @Query("SELECT count (*)FROM Zona")
     public int contar();
+    @Query(value = "SELECT zona.nombre_zona, COUNT(*) as alertsquantity\n" +
+            " FROM zona INNER JOIN zona_alerta ON zona.id_zona = zona_alerta.zo_id_zona\n" +
+            " GROUP BY zona.nombre_zona\n" +
+            " ORDER BY alertsquantity DESC", nativeQuery = true)
+    public List<String[]> cantidadAlerta();
 
 }
