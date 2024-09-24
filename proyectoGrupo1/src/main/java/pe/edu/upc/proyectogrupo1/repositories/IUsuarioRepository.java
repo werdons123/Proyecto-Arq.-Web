@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.proyectogrupo1.entities.Usuario;
+import pe.edu.upc.proyectogrupo1.entities.Zona;
 
 import java.util.List;
 
@@ -28,11 +29,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
             " LEFT JOIN alerta a ON us.id_usuario = a.id_usuario\n" +
             " GROUP BY us.id_usuario" ,nativeQuery = true)
     public List<String[]>usuarioporalerta();
-    @Query(value = "SELECT us.id_usuario, COUNT(a.id_rol) AS quantity\n" +
-            " FROM usuario us\n" +
-            " LEFT JOIN rol r ON us.id_usuario = a.id_usuario\n" +
-            " GROUP BY us.id_usuario",nativeQuery = true)
-    public List<String[]>usuarioporrol();
+    @Query("SELECT u FROM Usuario u INNER JOIN Rol r ON u.id_usuario = r.us.id_usuario")
+    public List<Usuario> usuarioporrol();
 
 
     @Query(value = "SELECT usuario.nombre, usuario.apellidos, COUNT(*) as alertsquantity\n" +

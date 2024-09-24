@@ -40,7 +40,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public List<String[]> usuarioporrol() {
+    public List<Usuario> usuarioporrol() {
         return uR.usuarioporrol();
     }
 

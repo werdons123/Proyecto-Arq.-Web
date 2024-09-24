@@ -22,4 +22,9 @@ public class ConsejoServiceImplement implements IConsejoService {
     @Override
     public void delete(int id_Consejo){cR.deleteById(id_Consejo);}
 
+    @Override
+    public List<Consejo> buscarPorTipo(String tipo) {
+        return cR.buscarPorTipo(tipo);
+    }
+
 }

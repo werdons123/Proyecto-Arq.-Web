@@ -2,6 +2,7 @@ package pe.edu.upc.proyectogrupo1.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.AlertaDTO;
 import pe.edu.upc.proyectogrupo1.dtos.CantidadTipoDesastreDTO;
@@ -25,6 +26,7 @@ public class AlertaController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('CLIENTE')")
     public void insertar(@RequestBody AlertaDTO dto){
         ModelMapper m = new ModelMapper();
         Alerta al = m.map(dto,Alerta.class);

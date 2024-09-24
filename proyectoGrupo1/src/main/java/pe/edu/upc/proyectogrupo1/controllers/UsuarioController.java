@@ -64,17 +64,12 @@ public class UsuarioController {
         return listaDTO;
 
     }
-    @GetMapping("/cantidadusuario_rol")
-    public List<QuantityUsuarioByRolDTO> usuarioporrol(){
-        List<String[]> lista = uS.usuarioporrol();
-        List<QuantityUsuarioByRolDTO> listaDTO = new ArrayList<>();
-        for(String[] columna:lista){
-            QuantityUsuarioByRolDTO dto= new QuantityUsuarioByRolDTO();
-            dto.setId_usuario(Integer.parseInt(columna[0]));
-            dto.setQuantity(Integer.parseInt(columna[1]));
-            listaDTO.add(dto);
-        }
-        return listaDTO;
+    @GetMapping("/usuario_rol")
+    public List<UsuarioDTO> usuarioporrol(){
+        return uS.listarUsuarios().stream().map( x-> {
+            ModelMapper m =new ModelMapper();
+            return m.map(x,UsuarioDTO.class);
+        }).collect(Collectors.toList());
 
     }
 

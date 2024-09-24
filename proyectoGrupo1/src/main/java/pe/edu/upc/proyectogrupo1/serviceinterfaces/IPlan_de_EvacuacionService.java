@@ -1,5 +1,6 @@
 package pe.edu.upc.proyectogrupo1.serviceinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.proyectogrupo1.entities.ContactoAyuda;
 import pe.edu.upc.proyectogrupo1.entities.Plan_de_Evacuacion;
 
@@ -11,4 +12,5 @@ public interface IPlan_de_EvacuacionService {
     public void update(Plan_de_Evacuacion p);
     public void delete(int id);
     public Plan_de_Evacuacion listId(int id);
+    public List<Plan_de_Evacuacion> buscarPorNombre(String nombre);
 }

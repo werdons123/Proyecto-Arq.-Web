@@ -11,8 +11,8 @@ public interface IUsuarioService {
     public void delete(int id_usuario);
     public void update(Usuario u);
     public List<String[]> usuarioporalerta();
-    public List<String[]>usuarioporrol();
     public List<String[]> cantidadalertaservice();
+    public List<Usuario> usuarioporrol();
 
 
 }
