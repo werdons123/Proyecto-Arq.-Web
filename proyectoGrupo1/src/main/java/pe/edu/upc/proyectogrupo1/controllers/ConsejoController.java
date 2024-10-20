@@ -25,7 +25,6 @@ public class ConsejoController {
         }).collect(Collectors.toList());
     }
     @PostMapping
-    @PreAuthorize("hasAuthority('CLIENTE')")
     public void insertar(@RequestBody ConsejoDTO dto){
         ModelMapper m = new ModelMapper();
         Consejo c = m.map(dto,Consejo.class);

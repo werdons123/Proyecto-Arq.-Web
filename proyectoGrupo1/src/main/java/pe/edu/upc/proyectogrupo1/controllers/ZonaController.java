@@ -18,7 +18,6 @@ public class ZonaController {
     @Autowired
     private IZonaService vs;
     @PostMapping
-    @PreAuthorize("hasAuthority('ESPECIALISTA')")
     public void registrar(@RequestBody ZonaDTO dto)
     {
         ModelMapper m = new ModelMapper();

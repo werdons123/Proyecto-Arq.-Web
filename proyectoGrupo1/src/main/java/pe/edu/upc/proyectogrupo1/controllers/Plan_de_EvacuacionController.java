@@ -34,7 +34,6 @@ public class Plan_de_EvacuacionController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ESPECIALISTA')")
     public void insert(@RequestBody Plan_de_EvacuacionDTO dto){
         ModelMapper m = new ModelMapper();
         Plan_de_Evacuacion p = m.map(dto, Plan_de_Evacuacion.class);
