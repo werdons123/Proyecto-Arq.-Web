@@ -2,7 +2,6 @@ package pe.edu.upc.proyectogrupo1.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.Plan_de_EvacuacionDTO;
 import pe.edu.upc.proyectogrupo1.entities.Plan_de_Evacuacion;

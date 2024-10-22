@@ -3,10 +3,10 @@ package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.proyectogrupo1.dtos.QuantityUsuarioByAlertaDTO;
-import pe.edu.upc.proyectogrupo1.dtos.QuantityUsuarioByRolDTO;
 import pe.edu.upc.proyectogrupo1.dtos.QuantityAlertsByUserDTO;
+import pe.edu.upc.proyectogrupo1.dtos.QuantityUsuarioByAlertaDTO;
 import pe.edu.upc.proyectogrupo1.dtos.UsuarioDTO;
+import pe.edu.upc.proyectogrupo1.dtos.UsuarioListDTO;
 import pe.edu.upc.proyectogrupo1.entities.Usuario;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IUsuarioService;
 import java.util.ArrayList;
@@ -20,10 +20,10 @@ public class UsuarioController {
     private IUsuarioService uS;
 
     @GetMapping
-    public List<UsuarioDTO> listarUsuarios(){
+    public List<UsuarioListDTO> listarUsuarios(){
         return uS.listarUsuarios().stream().map( x-> {
             ModelMapper m =new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
+            return m.map(x,UsuarioListDTO.class);
         }).collect(Collectors.toList());
     }
 

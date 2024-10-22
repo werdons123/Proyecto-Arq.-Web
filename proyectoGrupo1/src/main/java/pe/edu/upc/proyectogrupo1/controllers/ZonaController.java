@@ -1,7 +1,6 @@
 package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.QuantityAlertsByZoneDTO;
 import pe.edu.upc.proyectogrupo1.dtos.ZonaDTO;
@@ -62,6 +61,7 @@ public class ZonaController {
     {
         return vs.contar();
     };
+
     @GetMapping("/cantidadesalertas")
     public  List<QuantityAlertsByZoneDTO> cantidadalesertasController(){
         List<String[]> lista = vs.cantidadAlertaservice();

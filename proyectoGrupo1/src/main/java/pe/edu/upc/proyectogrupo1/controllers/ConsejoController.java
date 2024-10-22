@@ -1,11 +1,9 @@
 package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.ConsejoDTO;
 import pe.edu.upc.proyectogrupo1.entities.Consejo;
-import pe.edu.upc.proyectogrupo1.entities.Plan_de_Evacuacion;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IConsejoService;
 
 import java.util.List;
@@ -32,6 +30,7 @@ public class ConsejoController {
     }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){cS.delete(id);}
+
     @PutMapping
     public void modificar(@RequestBody ConsejoDTO dto)
     {

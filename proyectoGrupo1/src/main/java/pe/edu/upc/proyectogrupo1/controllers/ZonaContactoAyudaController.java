@@ -3,11 +3,8 @@ package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.proyectogrupo1.dtos.CantidadTipoDesastreDTO;
-import pe.edu.upc.proyectogrupo1.dtos.ContactoAyudaDTO;
 import pe.edu.upc.proyectogrupo1.dtos.ZonaContactoAyudaDTO;
 import pe.edu.upc.proyectogrupo1.dtos.contactoDTO;
-import pe.edu.upc.proyectogrupo1.entities.ContactoAyuda;
 import pe.edu.upc.proyectogrupo1.entities.ZonaContactoAyuda;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IZonaContactoAyudaService;
 

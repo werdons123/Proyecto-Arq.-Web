@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02fccced-0dfb-4432-9af0-b3cc66698a63" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/src/main/java/pe/edu/upc/proyectogrupo1/ProyectoGrupo1Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/src/test/java/pe/edu/upc/proyectogrupo1/ProyectoGrupo1ApplicationTests.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ProyectoArqWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoArqWeb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/src/main/java/pe/edu/upc/proyectogrupo1/ProyectoGrupo1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/proyectoGrupo1/src/main/java/pe/edu/upc/proyectogrupo1/ProyectoGrupo1Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectoGrupo1/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/proyectoGrupo1/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,18 +30,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "jair2404"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jair2404&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/werdons123/ProyectoArqWeb",
-    "accountId": "c2f4c4ab-c5dc-499e-b8c7-cbfa8e0d5bc4"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/werdons123/ProyectoArqWeb&quot;,
+    &quot;accountId&quot;: &quot;c2f4c4ab-c5dc-499e-b8c7-cbfa8e0d5bc4&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -60,42 +60,73 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ProyectoGrupo1Application.executor": "Run",
+    "Maven.proyectoGrupo1 [clean].executor": "Run",
+    "Maven.proyectoGrupo1 [org.apache.maven.plugins:maven-clean-plugin:3.3.2:clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ProyectoArqWeb.executor": "Run",
     "Spring Boot.ProyectoGrupo1Application.executor": "Run",
-    "git-widget-placeholder": "Dev__Jair",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "Dev__Nicole",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jloay/Downloads/ProyectoArqWeb-main/ProyectoArqWeb-main/ProyectoArqWeb-main/proyectoGrupo1",
+    "last_opened_file_path": "C:/Users/Carlos/disasterrelieve/ProyectoArqWeb",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Carlos\disasterrelieve\ProyectoArqWeb\proyectoGrupo1\src\main\java" />
       <recent name="C:\Users\jloay\Downloads\ProyectoArqWeb-main\ProyectoArqWeb-main\ProyectoArqWeb-main\proyectoGrupo1\proyectoGrupo1" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="ProyectoGrupo1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+  <component name="RunManager" selected="Spring Boot.ProyectoGrupo1Application">
+    <configuration name="ProyectoArqWeb" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" activateToolWindowBeforeRun="false">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateResources" />
       <module name="proyectoGrupo1" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="pe.edu.upc.proyectogrupo1.ProyectoGrupo1Application" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProyectoGrupo1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="ProyectoArqWeb" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pe.edu.upc.proyectogrupo1.ProyectoGrupo1Application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pe.edu.upc.proyectogrupo1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ProyectoArqWeb" />
+      <item itemvalue="Spring Boot.ProyectoGrupo1Application" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ProyectoGrupo1Application" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -115,6 +146,11 @@
       <updated>1724883638138</updated>
       <workItem from="1724883639211" duration="876000" />
       <workItem from="1724887797205" duration="792000" />
+      <workItem from="1725147156812" duration="145000" />
+      <workItem from="1725147335463" duration="547000" />
+      <workItem from="1725147898255" duration="50000" />
+      <workItem from="1727155463529" duration="1700000" />
+      <workItem from="1727157186002" duration="1754000" />
     </task>
     <servers />
   </component>
