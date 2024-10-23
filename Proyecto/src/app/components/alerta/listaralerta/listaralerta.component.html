@@ -1,0 +1,45 @@
+<div class="container">
+    <div style="text-align: center;margin: 10%;"><h1>Lista de Alertas</h1></div>
+    <div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="c1">
+          <th mat-header-cell *matHeaderCellDef>Código</th>
+          <td mat-cell *matCellDef="let element">{{ element.id_alerta }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>Tipo de Desastres</th>
+          <td mat-cell *matCellDef="let element">{{ element.tipo_desastre }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="c4">
+          <th mat-header-cell *matHeaderCellDef>Hora</th>
+          <td mat-cell *matCellDef="let element">{{ element.hora }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="c5">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="c6">
+          <th mat-header-cell *matHeaderCellDef>Nivel de Gravedad</th>
+          <td mat-cell *matCellDef="let element">{{ element.nivel_gravedad }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="c7">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
