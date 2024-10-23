@@ -8,8 +8,12 @@
         </ng-container>
   
         <ng-container matColumnDef="c2">
-          <th mat-header-cell *matHeaderCellDef>Marca</th>
+          <th mat-header-cell *matHeaderCellDef>Id_alerta</th>
           <td mat-cell *matCellDef="let element">{{ element.al.id_alerta }}</td>
+        </ng-container>
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef>Id_Zona</th>
+          <td mat-cell *matCellDef="let element">{{ element.zo.id_Zona }}</td>
         </ng-container>
   
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

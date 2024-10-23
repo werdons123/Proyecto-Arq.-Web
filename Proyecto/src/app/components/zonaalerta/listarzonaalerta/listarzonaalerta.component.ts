@@ -14,7 +14,7 @@ import { ZonaalertaService } from '../../../services/zonaalerta.service';
 export class ListarzonaalertaComponent implements OnInit{
   dataSource: MatTableDataSource<Zona_Alerta> = new MatTableDataSource();
 
-  displayedColumns:string[]=['c1','c2']
+  displayedColumns:string[]=['c1','c2','c3']
 
   constructor(private zaS: ZonaalertaService) {}
 

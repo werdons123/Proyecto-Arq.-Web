@@ -1,9 +1,10 @@
 import { Alerta } from "./Alerta"
-//import { Zona } from './Zona';
+import { Zona } from './Zona';
 
 export class Zona_Alerta{
     id_Zona:number=0
     al:Alerta
+    zo:Zona
    
     
     constructor(){ 
@@ -16,6 +17,10 @@ export class Zona_Alerta{
             nivel_gravedad:"",
             estado:true
         };
+        this.zo = { id_Zona:0,
+            nombre_zona:"",
+            descripcion:"",
+            ubicacion:"" };
 
         
     }
