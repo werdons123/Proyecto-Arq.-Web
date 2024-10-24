@@ -7,11 +7,14 @@ import { ZonacontactoComponent } from './components/zonacontacto/zonacontacto.co
 import { ZonaalertaComponent } from './components/zonaalerta/zonaalerta.component';
 import { ConsejoComponent } from './components/consejo/consejo.component';
 import { AlertaComponent } from './components/alerta/alerta.component';
+import { RolComponent } from './components/rol/rol.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { PlanDeEvacuacionComponent } from './components/plan-de-evacuacion/plan-de-evacuacion.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,ZonaComponent,SimulacroComponent,ContactoComponent,ZonacontactoComponent,ZonaalertaComponent,ConsejoComponent,AlertaComponent
+  imports: [RouterOutlet,ZonaComponent,SimulacroComponent,ContactoComponent,ZonacontactoComponent,ZonaalertaComponent,ConsejoComponent,AlertaComponent,RolComponent,UsuarioComponent,PlanDeEvacuacionComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
