@@ -7,5 +7,5 @@ export class PlanEvacuacion {
   descripcion: string = '';
   rutasEvacuacion: string = '';
   puntosSeguros: string = '';
-  zona?:Zona;
+  zona:Zona = new Zona()
 }

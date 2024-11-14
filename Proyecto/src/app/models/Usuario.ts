@@ -1,7 +1,7 @@
 import { Rol } from "./Rol";
 
 export class Usuario {
-  idUsuario: number = 0;
+  id_usuario: number = 0;
   nombre: string = '';
   apellidos: string = '';
   fechanacimiento: Date = new Date(Date.now());

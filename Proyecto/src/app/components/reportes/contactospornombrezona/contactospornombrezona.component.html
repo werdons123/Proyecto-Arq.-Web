@@ -1,0 +1,27 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<div class="container">
+    <div style="text-align: center;margin: 10%;"><h1>Contactos por nombre de la zona</h1></div>
+    <div class="search-container">
+  
+      <form class="example-form" [formGroup]="form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de la zona: </mat-label>
+          <input matInput formControlName="nombrebusqueda">
+        </mat-form-field>   
+       
+      </form>
+    </div>
+    <div>
+        <button mat-flat-button class="custom-button" (click)="buscarContactosporZona()">Buscar</button>
+      </div>
+    <div>
+      <div class="card-container">
+        <mat-card *ngFor="let card of dataSource.filteredData" class="card">
+          <mat-card-title>{{ card.nombre_zona  }}</mat-card-title>
+          <mat-card-content>{{ card.nombre_institucion  }}</mat-card-content>
+          <mat-card-content>{{ card.telefono_institucion  }}</mat-card-content>
+          <mat-card-content>{{ card.descripcion_institucion  }}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>

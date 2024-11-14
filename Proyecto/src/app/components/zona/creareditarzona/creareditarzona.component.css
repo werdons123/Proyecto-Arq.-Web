@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .form-container {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .map-container {
+    height: 400px;
+    width: 100%; 
+    margin-top: 100px; 
+  }
