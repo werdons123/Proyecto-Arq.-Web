@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D9E8EF;
+}
+
+.custom-toolbar {
+    display: flex;
+    background-color: #3f51b5;
+    height: 55px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.NavLogo {
+    height: 40px;
+    margin: 0 10px;
+}
+
+.mat-toolbar {
+    background: #FFFFFF;
+    height: 55px;
+}
+
+.mat-toolbar button {
+    color: black;
+    padding: 7px 13px;
+    margin: 0 7px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.mat-toolbar button:hover {
+    background: #a3cfe3;
+    transition: .5s;
+}
+
+.mat-menu-item {
+    color: black;
+}
+
+.mat-menu-item:hover {
+    background: #a3cfe3;
+}
+
+.mat-toolbar button.IniciarSesion {
+    background: #d1b4ef;
+    color: #8C30F5;
+    transition: 1s;
+}
+
+.mat-toolbar button.Registrarse {
+    background: #8C30F5;
+    color: #F1E4FF;
+    transition: 1s;
+}
+
+.mat-toolbar button.IniciarSesion:hover {
+    background: #a3cfe3;
+    transition: .5s;
+}
+
+.mat-toolbar button.Registrarse:hover {
+    background: #5c2f90;
+    transition: .5s;
+}

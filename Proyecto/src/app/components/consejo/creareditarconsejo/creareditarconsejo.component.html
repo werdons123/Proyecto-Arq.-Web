@@ -1,0 +1,33 @@
+<div class="container" style="text-align: center;margin:2%">
+    <div><h1>Registro de Consejos</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+  
+        <mat-form-field class="example-full-width" >
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="htitulo" />
+        </mat-form-field>
+  
+        <br />
+        <mat-form-field class="example-full-width" >
+          <mat-label>Descripción</mat-label>
+          <textarea matInput formControlName="hdescripcion"></textarea>
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field>
+          <mat-label>Alerta</mat-label>
+          <mat-select formControlName="halerta" >
+            @for (a of listaAlertas; track a) {
+            <mat-option [value]="a.id_alerta">{{ a.id_alerta }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+  
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
