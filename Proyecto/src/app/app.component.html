@@ -34,7 +34,11 @@
     <button mat-button [matMenuTriggerFor]="menuSimulacro">
       <mat-icon>compare_arrows</mat-icon> Simulacros
     </button>
+    <button mat-button [matMenuTriggerFor]="menuRol">
+      <mat-icon>compare_arrows</mat-icon> Rol
+    </button>
   </div>
+  
   <div class="right-menu">
     <button mat-button [matMenuTriggerFor]="menuSalir">
       <mat-icon>person</mat-icon> Usuario
@@ -127,6 +131,17 @@
     <mat-icon>add_circle_outline</mat-icon> Registrar Simulacro
   </button>
 </mat-menu>
+
+<!-- Menú Rol -->
+<mat-menu #menuRol="matMenu">
+  <button mat-menu-item routerLink="/roles">
+    <mat-icon>list_alt</mat-icon> Listar roles
+  </button>
+  <button mat-menu-item routerLink="/roles/nuevo">
+    <mat-icon>add_circle_outline</mat-icon> Registrar rol
+  </button>
+</mat-menu>
+
 
 <!-- Menú Usuario -->
 <mat-menu #menuSalir="matMenu">

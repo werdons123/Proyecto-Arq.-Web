@@ -5,5 +5,4 @@ export class Zona{
     ubicacion:string=""
     latitud:number=0
     longitud:number=0
-
 }

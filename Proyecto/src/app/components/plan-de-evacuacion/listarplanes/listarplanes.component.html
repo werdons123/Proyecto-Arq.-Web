@@ -1,41 +1,42 @@
-<div>
-  <div><h2>Listar Planes de Evacuacion</h2></div>
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h1>Lista de Planes de evacuación</h1>
+  </div>
   <div>
-    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-        <ng-container matColumnDef="c1">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.id_plan_evacuacion}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="c2">
-            <th mat-header-cell *matHeaderCellDef> Título </th>
-            <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="c3">
-            <th mat-header-cell *matHeaderCellDef> Descripción </th>
-            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="c4">
-            <th mat-header-cell *matHeaderCellDef> Rutas de Evacuación </th>
-            <td mat-cell *matCellDef="let element"> {{element.rutas_evacuacion}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="c5">
-            <th mat-header-cell *matHeaderCellDef> Puntos Seguros </th>
-            <td mat-cell *matCellDef="let element"> {{element.puntos_seguros}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="c6">
-            <th mat-header-cell *matHeaderCellDef> Nombre Zona </th>
-            <td mat-cell *matCellDef="let element"> 
-                {{element.zona?.nombre_zona}} 
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="['c1', 'c2', 'c3', 'c4', 'c5', 'c6']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];"></tr>
-    </table>
+    <div class="card-container">
+      <mat-card *ngFor="let card of dataSource.filteredData" class="card">
+        <mat-card-title>{{ card.titulo }}</mat-card-title>
+        <mat-card-content><b>Descripción:</b> <br>{{ card.descripcion }}</mat-card-content><br>
+        <mat-card-content><b>Rutas de Evacuación: </b><br>{{ card.rutas_evacuacion }}</mat-card-content><br>
+        <mat-card-content><b>Puntos Seguros: </b><br>{{ card.puntos_seguros }}</mat-card-content><br>
+        <mat-card-content><b>Nombre Zona: </b><br>{{ card.zona.nombre_zona }}</mat-card-content><br>
+        <div class="iconos">
+          <mat-icon
+            style="color: #1a74be"
+            (click)="eliminar(card.id_plan_evacuacion)"
+            >delete</mat-icon
+          >
+          <mat-icon
+            style="color: #1a74be"
+            [routerLink]="['editar', card.id_plan_evacuacion]"
+            >edit</mat-icon
+          >
+        </div>
+      </mat-card>
+    </div>
+    <div class="paginador">
+      <mat-paginator
+        [length]="dataSource.data.length"
+        [pageSize]="6"
+        [pageSizeOptions]="[3, 6, 9]"
+        aria-label="Select page"
+        (page)="updatePaginator($event)"
+      >
+      </mat-paginator>
+    </div>
   </div>
 </div>

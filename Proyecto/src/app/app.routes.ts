@@ -24,6 +24,8 @@ import { CreareditaralertaComponent } from './components/alerta/creareditaralert
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { CantidadAlertasTipoComponent } from './components/reportes/cantidad-alertas-tipo/cantidad-alertas-tipo.component';
 import { BuscarcontactoszonaComponent } from './components/reportes/buscarcontactoszona/buscarcontactoszona.component';
+import { RolComponent } from './components/rol/rol.component';
+import { CreareditarrolComponent } from './components/rol/creareditarrol/creareditarrol.component';
 
 
 export const routes: Routes = [
@@ -104,7 +106,10 @@ export const routes: Routes = [
         children:[
             {
                 path:'nuevo', component:CreareditarplanesComponent,
-            }
+            },
+            {
+                path:'editar/:id', component:CreareditarplanesComponent,
+            },
         ]
     },
     {
@@ -128,7 +133,15 @@ export const routes: Routes = [
             }
         ]
     },
-
-
-    
+    {
+        path:'roles', component:RolComponent,
+        children:[
+            {
+                path:'nuevo', component:CreareditarrolComponent,
+            },
+            {
+                path:'editar/:id', component:CreareditarrolComponent
+            },
+        ]
+    },
 ];
