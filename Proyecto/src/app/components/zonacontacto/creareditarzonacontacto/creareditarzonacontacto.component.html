@@ -1,0 +1,34 @@
+<div class="container" style="text-align: center;margin:2%">
+  <div *ngIf="!edicion"><h1>Registro de Zona-Contacto</h1></div>
+  <div *ngIf="edicion"><h1>Edición de Zona-Contacto</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+  
+        <mat-form-field>
+          <mat-label>Zona</mat-label>
+          <mat-select formControlName="hzona" >
+            @for (z of listaZona; track z) {
+            <mat-option [value]="z.id_Zona">{{ z.nombre_zona }}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="form.get('hzona')?.hasError('required')"
+          >La zona es obligatoria.</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Contacto de Ayuda</mat-label>
+            <mat-select formControlName="hcontacto" >
+              @for (c of listaContactoAyuda; track c) {
+              <mat-option [value]="c.idContactoAyuda">{{ c.nombreInstitucion }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('hcontacto')?.hasError('required')"
+          >El contacto es obligatorio.</mat-error>
+          </mat-form-field>
+  
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
