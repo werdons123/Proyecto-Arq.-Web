@@ -1,0 +1,46 @@
+<div class="container">
+  <!-- Sección izquierda: logo y mensaje de bienvenida -->
+  <div class="left-section">
+    <h1>Bienvenido a</h1>
+    <h2>DISASTER RELIEF</h2>
+    <p>¡Incríbete y enterate sobre loas ultimas alertas registradas hasta el momento!.</p>
+  </div>
+  <div class="right-section">
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <h1>Inicia Sesión</h1>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Usuario</mat-label>
+      <input 
+        matInput 
+        placeholder="Username" 
+        [(ngModel)]="username" 
+        name="username" 
+        required 
+        #usernameInput="ngModel"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+        required
+        #passwordInput="ngModel"
+      />
+    </mat-form-field>
+    <br />
+    <button 
+      mat-raised-button 
+      class="colorb" 
+      type="submit" 
+      [disabled]="loginForm.invalid"
+    >
+      Ingresar
+      </button>
+    </form>
+  </div>
+</div>
