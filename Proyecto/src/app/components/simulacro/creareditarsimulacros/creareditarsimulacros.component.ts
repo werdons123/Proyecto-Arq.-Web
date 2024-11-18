@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit,NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators,FormControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Simulacro } from '../../../models/Simulacro';
 import { Zona } from '../../../models/Zona';
 import { SimulacroService } from '../../../services/simulacro.service';
+import { ZonaService } from '../../../services/zona.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creareditarsimulacros',
@@ -24,22 +26,33 @@ import { CommonModule } from '@angular/common';
     MatNativeDateModule,
     MatIconModule,
     CommonModule,
+    FormsModule,
   ],
   templateUrl: './creareditarsimulacros.component.html',
   styleUrl: './creareditarsimulacros.component.css'
 })
 export class CreareditarsimulacrosComponent implements OnInit{
+  
   form: FormGroup = new FormGroup({});
   sim: Simulacro = new Simulacro();
+  valor: number = 1;
   id: number=0;
   edicion: boolean = false;
   listaZonas: Zona[] = [];
-
+  listaTipos: { value: string; viewValue: string }[] = [
+    { value: 'Simulacro de sismo', viewValue: 'Simulacro de sismo' },
+    { value: 'Simulacro de crecida de ríos', viewValue: 'Simulacro de crecida de ríos' },
+    { value: 'Simulacro de evacuación por tormenta', viewValue: 'Simulacro de evacuación por tormenta' },
+    { value: 'Simulacro de inundación por tsunami', viewValue: 'Simulacro de inundación por tsunami' },
+    { value: 'Simulacro de actividad volcánica', viewValue: 'Simulacro de actividad volcánica' },
+  ];
   constructor(
     private sS: SimulacroService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute 
+    private route: ActivatedRoute, 
+    private zS: ZonaService,
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data:Params) => {
@@ -51,11 +64,14 @@ export class CreareditarsimulacrosComponent implements OnInit{
     this.form = this.formBuilder.group({
       hcodigo: [''],
       htipo: ['', Validators.required],
-      hfecha: ['', Validators.required],
-      hhora: ['', Validators.required],
+      hfecha: ['', [Validators.required,this.validarFecha]],
+      hhora: ['', [Validators.required,this.validarHora]],
       hdescripcion: ['', Validators.required],
       hparticipantes: ['', Validators.required],
       hzona: ['', Validators.required],
+    });
+    this.zS.list().subscribe((data) => {
+      this.listaZonas = data;
     });
   }
 
@@ -63,7 +79,10 @@ export class CreareditarsimulacrosComponent implements OnInit{
     this.form.markAllAsTouched();
 
     if (this.form.invalid) {
-      console.log("Formulario inválido.");
+      this.snackBar.open('Complete correctamente el formulario', 'Cerrar', {
+        duration: 3000, 
+        panelClass: ['error-snack-bar']  
+      });
       return;
     }
     if(this.form.valid) {
@@ -92,7 +111,7 @@ export class CreareditarsimulacrosComponent implements OnInit{
       
     
     }
-    this.router.navigate(['zonas']);
+    this.router.navigate(['simualcro']);
   }
 
   init() {
@@ -105,9 +124,31 @@ export class CreareditarsimulacrosComponent implements OnInit{
           hhora: new FormControl(data.hora),
           hdescripcion: new FormControl(data.descripcion),
           hparticipantes: new FormControl(data.participantes),
-          hzona: new FormControl(data.zo),
+          hzona: new FormControl(data.zo.id_Zona),
         });
       });
     }
+  }
+  validarFecha(control: FormControl): { [key: string]: boolean } | null {
+    const fecha = control.value;
+    if (!fecha) {
+    return null; 
+  }
+    const fechaIngresada = new Date(fecha);
+    const fechaActual = new Date();
+
+ 
+    if (fechaIngresada <= fechaActual) {
+      return { 'fechaMenorOIgualActual': true }; 
+    }
+
+    return null; 
+  }
+
+  validarHora(control: FormControl): { [key: string]: boolean } | null {
+    const hora = control.value;
+  
+    const regex = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/;
+    return hora && regex.test(hora) ? null : { 'horaInvalida': true };
   }
 }

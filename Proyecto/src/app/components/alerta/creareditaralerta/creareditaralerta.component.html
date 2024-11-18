@@ -1,18 +1,25 @@
 <div class="container" style="text-align: center;margin:2%">
-    <div><h1>Registro de Alertas</h1></div>
+  <div *ngIf="!edicion"><h1>Registro de Alertas</h1></div>
+  <div *ngIf="edicion"><h1>Edición de Alertas</h1></div>
     <div>
       <form [formGroup]="form" (submit)="insertar()">
   
-        <mat-form-field class="example-full-width" >
-          <mat-label>Tipo Desastre</mat-label>
-          <input matInput formControlName="htipo" />
-        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="htipo" >
+            @for (t of listaTipos; track t) {
+            <mat-option [value]="t.value">{{ t.viewValue }}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="form.get('htipo')?.hasError('required')"
+          >El tipo es obligatorio.</mat-error>
+      </mat-form-field>
   
         <br />
 
         <mat-form-field>
             <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfecha"/>
+            <input matInput [matDatepicker]="picker" formControlName="hfecha"  [disabled]="true" />
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
@@ -25,13 +32,15 @@
 
         <mat-form-field class="example-full-width" >
           <mat-label>Hora</mat-label>
-          <input matInput  matInput formControlName="hhora"/>
+          <input matInput formControlName="hhora" [disabled]="true" />
         </mat-form-field>
         <br />
 
         <mat-form-field class="example-full-width" >
             <mat-label>Descripcion</mat-label>
-            <textarea matInput type="text" formControlName="hdescripcion"></textarea>
+            <textarea matInput formControlName="hdescripcion"></textarea>
+            <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')"
+            >La descripcion es obligatoria.</mat-error>
         </mat-form-field>
         <br />
 
@@ -42,6 +51,8 @@
               <mat-option [value]="g.value">{{ g.viewValue }}</mat-option>
               }
             </mat-select>
+            <mat-error *ngIf="form.get('hgravedad')?.hasError('required')"
+            >La gravedad es obligatoria.</mat-error>
         </mat-form-field>
         <br />
 
@@ -54,9 +65,11 @@
           <mat-label>Usuario</mat-label>
           <mat-select formControlName="husuario" >
             @for (u of listaUsuarios; track u) {
-            <mat-option [value]="u.id_usuario">{{ u.id_usuario }}</mat-option>
+            <mat-option [value]="u.id_usuario">{{ u.nombre }}</mat-option>
             }
           </mat-select>
+          <mat-error *ngIf="form.get('husuario')?.hasError('required')"
+            >El usuario es obligatoria.</mat-error>
         </mat-form-field>
   
         <div>

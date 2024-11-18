@@ -19,7 +19,7 @@ import { Alerta } from '../../../models/Alerta';
 import { AlertaService } from '../../../services/alerta.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -51,7 +51,8 @@ export class CreareditarzonaalertaComponent implements OnInit{
     private router: Router,
     private zoS: ZonaService,
     private alS: AlertaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data:Params) => {
@@ -73,30 +74,52 @@ export class CreareditarzonaalertaComponent implements OnInit{
   }
   insertar2(): void {
     this.form.markAllAsTouched();
-
     if (this.form.invalid) {
-      console.log("Formulario inválido.");
+      this.snackBar.open('Complete correctamente el formulario', 'Cerrar', {
+        duration: 3000, 
+        panelClass: ['error-snack-bar']  
+      });
       return;
     }
-    if ( this.form.valid) {
-      this.zonaalerta.id_Zona = this.form.value.hcodigo;
-      this.zonaalerta.zo.id_Zona = this.form.value.hzona;
-      this.zonaalerta.al.id_alerta= this.form.value.halerta;
-      if (this.edicion) {
-        this.zaS.update(this.zonaalerta).subscribe((data) => {
-          this.zaS.list().subscribe((data) => {
-            this.zaS.setList(data);
-          });
+    const zonaId = this.form.value.hzona;
+    const alertaId = this.form.value.halerta;
+
+    // Verificar si la combinación ya existe
+    this.zaS.list().subscribe((data) => {
+      const existe = data.some(
+        (item) => item.zo.id_Zona === zonaId && item.al.id_alerta === alertaId
+      );
+
+      if (existe) {
+        // Si la combinación ya existe, mostrar un mensaje de error
+        this.snackBar.open('Esta combinación de zona y alerta ya ha sido registrada', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['error-snack-bar'],
         });
       } else {
-        this.zaS.insert(this.zonaalerta).subscribe((data) => {
-          this.zaS.list().subscribe((data) => {
-            this.zaS.setList(data);
+        // Si la combinación no existe, proceder con la inserción o actualización
+        this.zonaalerta.id_Zona = this.form.value.hcodigo;
+        this.zonaalerta.zo.id_Zona = zonaId;
+        this.zonaalerta.al.id_alerta = alertaId;
+
+        if (this.edicion) {
+          this.zaS.update(this.zonaalerta).subscribe((data) => {
+            this.zaS.list().subscribe((data) => {
+              this.zaS.setList(data);
+            });
           });
-        });
+        } else {
+          this.zaS.insert(this.zonaalerta).subscribe((data) => {
+            this.zaS.list().subscribe((data) => {
+              this.zaS.setList(data);
+            });
+          });
+        }
+
+        // Redirigir al listado de zona-alertas
+        this.router.navigate(['zonaAlerta']);
       }
-    }
-    this.router.navigate(['zonaAlerta']);
+    });
   }
 
   init() {

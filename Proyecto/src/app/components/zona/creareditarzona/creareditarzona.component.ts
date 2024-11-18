@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule,MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -14,7 +14,28 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { GoogleMap, MapMarker } from '@angular/google-maps'; 
+import { MatSnackBar } from '@angular/material/snack-bar';
+export function rangoLatitudValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    // Verifica si el valor es un número y está en el rango válido para latitudes
+    if (value && !isNaN(value) && (value >= -90 && value <= 90)) {
+      return null;  // Si es válido, no hay error
+    }
+    return { latitudInvalida: true };  // Si no es válido, retorna el error
+  };
+}
 
+export function rangoLongitudValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    // Verifica si el valor es un número y está en el rango válido para longitudes
+    if (value && !isNaN(value) && (value >= -180 && value <= 180)) {
+      return null;  // Si es válido, no hay error
+    }
+    return { longitudInvalida: true };  // Si no es válido, retorna el error
+  };
+}
 interface Lugar {
   nombre: string;
   ubicacion:string;
@@ -44,6 +65,7 @@ interface Lugar {
   templateUrl: './creareditarzona.component.html',
   styleUrl: './creareditarzona.component.css'
 })
+
 export class CreareditarzonaComponent implements OnInit{
   letraSubject: Subject<string> = new Subject<string>();
   letra: string = '';  
@@ -59,7 +81,8 @@ export class CreareditarzonaComponent implements OnInit{
     private zS: ZonaService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data:Params) => {
@@ -85,19 +108,22 @@ export class CreareditarzonaComponent implements OnInit{
     });
 
     this.form = this.formBuilder.group({
-      hcodigo: [''],
+      hcodigo:[''],
       hnombre: ['', [Validators.required,Validators.maxLength(40), Validators.minLength(1)]],
       hdescripcion: ['', [Validators.required,Validators.maxLength(40), Validators.minLength(1)]],
       hubicacion: ['', [Validators.required,Validators.maxLength(80), Validators.minLength(1)]],
-      hlatitud:['', [Validators.required,Validators.maxLength(80), Validators.minLength(1)]],
-      hlongitud:['', [Validators.required,Validators.maxLength(80), Validators.minLength(1)]],
+      hlatitud:['', [Validators.required,Validators.maxLength(80), Validators.minLength(1), rangoLatitudValidator()]],
+      hlongitud:['', [Validators.required,Validators.maxLength(80), Validators.minLength(1),rangoLongitudValidator()]],
     });
   }
   insertar3(): void {
     this.form.markAllAsTouched();
 
     if (this.form.invalid) {
-      console.log("Formulario inválido.");
+      this.snackBar.open('Complete correctamente el formulario', 'Cerrar', {
+        duration: 3000, 
+        panelClass: ['error-snack-bar']  
+      });
       return;
     }
     if ( this.form.valid) {

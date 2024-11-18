@@ -1,17 +1,16 @@
 <div class="container" style="text-align: center;margin:2%">
-    <div><h1>Registro de Planes de Evacuación</h1></div>
+    <div><h1>Registro de Simulacros</h1></div>
     <div>
       <form [formGroup]="form" (submit)="insertar()">
-
-        <mat-form-field *ngIf="edicion">
-            <mat-label>Código</mat-label>
-            <input matInput formControlName="hcodigo" readonly />
-        </mat-form-field>
-
-        <br />
         <mat-form-field class="example-full-width" >
           <mat-label>Tipo</mat-label>
-          <input matInput formControlName="htipo" />
+          <mat-select formControlName="htipo" >
+            @for (t of listaTipos; track t) {
+            <mat-option [value]="t.value">{{ t.viewValue }}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="form.get('htipo')?.hasError('required')"
+            >El tipo es obligatorio.</mat-error>
         </mat-form-field>
   
         <br />
@@ -25,24 +24,39 @@
               [for]="picker"
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('hfecha')?.hasError('required')">
+              La fecha es obligatoria.
+            </mat-error>
+            <mat-error *ngIf="form.get('hfecha')?.hasError('fechaMenorOIgualActual')&& form.get('hfecha')?.value">
+              Ingrese una fecha mayor a la actual.
+            </mat-error>
           </mat-form-field>
         <br />
 
         <mat-form-field class="example-full-width" >
             <mat-label>Hora</mat-label>
             <input matInput formControlName="hhora">
+            <mat-error *ngIf="form.get('hhora')?.hasError('required')"
+            >La hora es obligatoria.</mat-error>
+            <mat-error *ngIf="form.get('hhora')?.hasError('horaInvalida')&& form.get('hhora')?.value">
+              Ingresar una hora valida.
+          </mat-error>
         </mat-form-field>
         <br />
 
         <mat-form-field class="example-full-width" >
           <mat-label>Descripción</mat-label>
-          <input matInput formControlName="hdescripcion">
+          <textarea matInput formControlName="hdescripcion"></textarea>
+          <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')"
+            >La descripcion es obligatoria.</mat-error>
         </mat-form-field>
         <br />
 
         <mat-form-field class="example-full-width" >
             <mat-label>Numero de Participantes</mat-label>
-            <input matInput formControlName="hdescripcion">
+            <input matInput formControlName="hparticipantes" type="number" [(ngModel)]="valor" min="1" max="1000" step="1">
+            <mat-error *ngIf="form.get('hparticipantes')?.hasError('required')"
+            >La cantidad participantes es obligatorio.</mat-error>
           </mat-form-field>
         <br />
 
@@ -54,6 +68,8 @@
             <mat-option [value]="z.id_Zona">{{ z.nombre_zona }}</mat-option>
             }
           </mat-select>
+          <mat-error *ngIf="form.get('hzona')?.hasError('required')"
+            >La zona es obligatoria.</mat-error>
         </mat-form-field>
   
         <div>
@@ -62,4 +78,3 @@
       </form>
     </div>
   </div>
-
