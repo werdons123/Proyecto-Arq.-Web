@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { ListarzonaComponent } from './listarzona/listarzona.component';
+import { ListaridzonaComponent } from './listaridzona/listaridzona.component';
 
 @Component({
   selector: 'app-zona',

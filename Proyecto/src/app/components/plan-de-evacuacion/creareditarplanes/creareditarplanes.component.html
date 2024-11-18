@@ -1,0 +1,50 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div *ngIf="!edicion" ><h1>Registro de Planes de Evacuación</h1></div>
+  <div *ngIf="edicion" ><h1>Editar Plan de Evacuación</h1></div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="hcodigo" readonly />
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="htitulo" />
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="hdescripcion"></textarea>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Rutas de Evacuación</mat-label>
+        <textarea matInput formControlName="hrutas"></textarea>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Puntos Seguros</mat-label>
+        <textarea matInput formControlName="hpuntos"></textarea>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Zona</mat-label>
+        <mat-select formControlName="hzona">
+          @for (a of listaZonas; track a) {
+          <mat-option [value]="a.id_Zona">{{ a.nombre_zona }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

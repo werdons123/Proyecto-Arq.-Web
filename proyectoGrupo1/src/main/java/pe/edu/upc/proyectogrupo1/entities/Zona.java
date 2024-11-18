@@ -11,10 +11,10 @@ public class Zona {
     @Column(name = "nombre_zona",nullable = false,length = 40)
     private String nombre_zona;
 
-    @Column(name = "descripcion",nullable = false,length = 80)
+    @Column(name = "descripcion",nullable = false,length = 120)
     private String descripcion;
 
-    @Column(name = "ubicacion",nullable = false,length = 40)
+    @Column(name = "ubicacion",nullable = false,length = 80)
     private String ubicacion;
 
 

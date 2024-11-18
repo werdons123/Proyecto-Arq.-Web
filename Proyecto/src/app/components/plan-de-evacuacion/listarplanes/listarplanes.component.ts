@@ -1,21 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table'
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { PlanEvacuacion } from '../../../models/Plan_de_Evacuacion';
 import { PlanDeEvacuacionService } from '../../../services/plan-de-evacuacion.service';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listarplanes',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [
+    MatTableModule,
+    MatIconModule,
+    RouterLink,
+    MatPaginator,
+    CommonModule,
+    MatCardModule,
+  ],
   templateUrl: './listarplanes.component.html',
-  styleUrl: './listarplanes.component.css'
+  styleUrl: './listarplanes.component.css',
 })
-export class ListarplanesComponent {
-  datasource: MatTableDataSource<PlanEvacuacion> = new MatTableDataSource();
-  constructor(private peS: PlanDeEvacuacionService){}
+export class ListarplanesComponent implements OnInit {
+  dataSource: MatTableDataSource<PlanEvacuacion> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private peS: PlanDeEvacuacionService) {}
   ngOnInit(): void {
-      this.peS.list().subscribe(data => {
-        this.datasource=new MatTableDataSource(data)
-      })
+    this.peS.list().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+    });
+    ;
+    this.peS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.data = data;
+    });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  eliminar(id: number) {
+    console.log(id); 
+    this.peS.delete(id).subscribe((data) => {
+      this.peS.list().subscribe((data) => {
+        this.peS.setList(data);
+        this.dataSource.data = data;
+      });
+    });
+  }
+
+  updatePaginator(event: any) {
+    const startIndex = event.pageIndex * event.pageSize;
+    const endIndex = startIndex + event.pageSize;
+    this.dataSource.filteredData = this.dataSource.data.slice(
+      startIndex,
+      endIndex
+    );
   }
 }

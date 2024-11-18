@@ -13,33 +13,41 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/rol")
 public class RolController {
+
     @Autowired
     private IRolService rS;
+
     @GetMapping
     public List<RolDTO> listar() {
-        return rS.list().stream().map(x->{
-            ModelMapper m=new ModelMapper();
-            return m.map(x,RolDTO.class);
+        return rS.list().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, RolDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
     public void insertar(@RequestBody RolDTO dto) {
-        ModelMapper m=new ModelMapper();
-        Rol r=m.map(dto,Rol.class);
+        ModelMapper m = new ModelMapper();
+        Rol r = m.map(dto, Rol.class);
         rS.insert(r);
     }
+
     @GetMapping("/{id}")
-    public RolDTO buscarPorId(@RequestParam ("id") Integer id){
-        ModelMapper m=new ModelMapper();
-        RolDTO dto=m.map(rS.listId(id),RolDTO.class);
+    public RolDTO listID(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        RolDTO dto = m.map(rS.listId(id), RolDTO.class);
         return dto;
     }
+
     @PutMapping
     public void modificar(@RequestBody RolDTO dto) {
-        ModelMapper m=new ModelMapper();
-        Rol r=m.map(dto,Rol.class);
+        ModelMapper m = new ModelMapper();
+        Rol r = m.map(dto, Rol.class);
         rS.update(r);
     }
+
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id) {rS.delete(id);}
+    public void eliminar(@PathVariable("id") Integer id) {
+        rS.delete(id);
+    }
 }

@@ -1,7 +1,6 @@
 package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.ConsejoDTO;
 import pe.edu.upc.proyectogrupo1.entities.Consejo;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/contactos")
+@RequestMapping("/consejos")
 
 public class ConsejoController {
     @Autowired
@@ -39,7 +38,7 @@ public class ConsejoController {
         Consejo co = m.map(dto, Consejo.class);
         cS.update(co);
     }
-    @GetMapping("/planesdeevacionporzona")
+    @GetMapping("/consejospordesastres")
     public List<ConsejoDTO> consejosportipodedesastre(@RequestParam String tipo)
     {
         return cS.buscarPorTipo(tipo).stream().map(x->{

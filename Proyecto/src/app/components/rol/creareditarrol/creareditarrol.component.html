@@ -1,0 +1,30 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div *ngIf="!edicion"><h1>Registro de Roles</h1></div>
+  <div *ngIf="edicion"><h1>Editar Rol</h1></div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="hcodigo" readonly />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Tipo Rol</mat-label>
+        <input matInput formControlName="htipo" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="husuario">
+          @for (a of listaUsuarios; track a) {
+          <mat-option [value]="a.id_usuario">{{ a.username }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <div>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>
