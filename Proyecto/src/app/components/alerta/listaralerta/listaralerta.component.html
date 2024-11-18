@@ -1,46 +1,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <div class="container">
-    <div style="text-align: center;margin: 10%;"><h1>Lista de Alertas</h1></div>
-    <div>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="c1">
-          <th mat-header-cell *matHeaderCellDef>Código</th>
-          <td mat-cell *matCellDef="let element">{{ element.id_alerta }}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="c2">
-          <th mat-header-cell *matHeaderCellDef>Tipo de Desastres</th>
-          <td mat-cell *matCellDef="let element">{{ element.tipo_desastre }}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="c3">
-          <th mat-header-cell *matHeaderCellDef>Fecha</th>
-          <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="c4">
-          <th mat-header-cell *matHeaderCellDef>Hora</th>
-          <td mat-cell *matCellDef="let element">{{ element.hora }}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="c5">
-          <th mat-header-cell *matHeaderCellDef>Descripción</th>
-          <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="c6">
-          <th mat-header-cell *matHeaderCellDef>Nivel de Gravedad</th>
-          <td mat-cell *matCellDef="let element">{{ element.nivel_gravedad }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="c7">
-          <th mat-header-cell *matHeaderCellDef>Estado</th>
-          <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+  <div style="text-align: center;margin: 10%;"><h1>Lista de alertas</h1></div>
+  <div>
+    <div class="card-container">
+      <mat-card *ngFor="let card of dataSource.filteredData" class="card">
+        <mat-card-title>{{ card.tipo_desastre  }}</mat-card-title>
+        <mat-card-content>{{ card.fecha  }}</mat-card-content>
+        <mat-card-content>{{ card.hora  }}</mat-card-content>
+      <div class = "iconos">
+        <mat-icon style="color:#1A74BE" (click)="eliminar(card.id_alerta)">delete</mat-icon>
+        <mat-icon style="color:#1A74BE" [routerLink]="['ediciones4',card.id_alerta]">edit</mat-icon>
+        <mat-icon style="color:#1A74BE" [routerLink]="['listadoid4',card.id_alerta]">visibility</mat-icon>
+      </div>
+      </mat-card>
     </div>
+    <div class = "paginador">
+    <mat-paginator [length]="dataSource.data.length" 
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+    (page)="updatePaginator($event)">
+    </mat-paginator>
   </div>
+  </div>
+</div>
