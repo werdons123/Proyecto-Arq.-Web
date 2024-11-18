@@ -30,7 +30,7 @@ public class ContactoAyudaController {
         caS.insert(ca);
     }
     @GetMapping("/{id}")
-    public ContactoAyudaDTO buscarPorId(@RequestParam("id") Integer id) {
+    public ContactoAyudaDTO buscarPorId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         ContactoAyudaDTO dto = m.map(caS.listId(id),ContactoAyudaDTO.class);
         return dto;

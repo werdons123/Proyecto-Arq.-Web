@@ -29,7 +29,7 @@ public class SimulacroController {
         siS.insert(si);
     }
     @GetMapping("/{id}")
-    public SimulacroDTO buscarPorId(@RequestParam("Id") Integer id) {
+    public SimulacroDTO buscarPorId(@PathVariable Integer id) {
         ModelMapper m = new ModelMapper();
         SimulacroDTO dto = m.map(siS.listId(id), SimulacroDTO.class);
         return dto;
@@ -42,9 +42,9 @@ public class SimulacroController {
     }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Integer id) { siS.delete(id); }
-    @GetMapping("/Por nombre")
+    @GetMapping("/Pornombre")
     public List<SimulacroDTO> buscarPorNombre(@RequestParam("nombre") String nombre) {
-        return siS.list().stream().map(x->{
+        return siS.buscarPorNombre(nombre).stream().map(x->{
             ModelMapper m = new ModelMapper();
             return m.map(x,SimulacroDTO.class);
         }).collect(Collectors.toList());

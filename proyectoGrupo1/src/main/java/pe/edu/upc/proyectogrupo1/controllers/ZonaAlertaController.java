@@ -3,8 +3,8 @@ package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.proyectogrupo1.dtos.ConsejoDTO;
 import pe.edu.upc.proyectogrupo1.dtos.ZonaAlertaDTO;
+import pe.edu.upc.proyectogrupo1.dtos.ZonaContactoAyudaDTO;
 import pe.edu.upc.proyectogrupo1.entities.ZonaAlerta;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IZonaAlertaService;
 
@@ -42,6 +42,12 @@ public class ZonaAlertaController {
         ModelMapper m = new ModelMapper();
         ZonaAlerta za = m.map(dto,ZonaAlerta.class);
 
+    }
+    @GetMapping("/{id}")
+    public ZonaAlertaDTO buscarPorId(@PathVariable Integer id) {
+        ModelMapper m = new ModelMapper();
+        ZonaAlertaDTO dto = m.map(aS.listId(id), ZonaAlertaDTO.class);
+        return dto;
     }
 
 }
