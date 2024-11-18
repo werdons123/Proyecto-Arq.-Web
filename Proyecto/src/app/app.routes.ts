@@ -35,8 +35,6 @@ import { UsuariosCantidadAlertasComponent } from './components/reportes/usuarios
 import { ZonasCantidadAlertasComponent } from './components/reportes/zonas-cantidad-alertas/zonas-cantidad-alertas.component';
 import { ListarConsejosTipoComponent } from './components/reportes/listar-consejos-tipo/listar-consejos-tipo.component';
 import { ListarPlanesZonaComponent } from './components/reportes/listar-planes-zona/listar-planes-zona.component';
-
-
 export const routes: Routes = [
     {
         path:'',

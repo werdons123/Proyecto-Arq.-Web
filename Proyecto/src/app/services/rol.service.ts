@@ -10,32 +10,27 @@ const base_url = environment.base;
 })
 export class RolService {
   private url = `${base_url}/rol`;
-  private ListaCambio = new Subject<Rol[]>()
   constructor(private http: HttpClient) {}
+  private listaCambio = new Subject<Rol[]>();
   list() {
     return this.http.get<Rol[]>(this.url);
   }
-  insert(r:Rol){
-    return this.http.post(this.url,r)
+  insert(r: Rol) {
+    return this.http.post(this.url, r);
   }
-
-  setList(ListaNueva:Rol[]){
-    this.ListaCambio.next(ListaNueva)
+  getList() {
+    return this.listaCambio.asObservable();
   }
-
-  getList(){
-    return this.ListaCambio.asObservable()
+  setList(listaNueva: Rol[]) {
+    this.listaCambio.next(listaNueva);
   }
-
-  listId(id:number){
-    return this.http.get<Rol>(`${this.url}/${id}`)
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
   }
-
-  update(r:Rol){
-    return this.http.put(this.url,r)
+  listaId(id: number) {
+    return this.http.get<Rol>(`${this.url}/${id}`);
   }
-
-  eliminar(id:number){
-    return this.http.delete(`${this.url}/${id}`)
+  update(r: Rol) {
+    return this.http.put(this.url, r);
   }
 }

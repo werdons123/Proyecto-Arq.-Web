@@ -4,12 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { Alerta } from '../models/Alerta';
 import { Observable, Subject } from 'rxjs';
 import { Cantidad_tipo_desastre } from '../models/Cantidad_tipo_desastre';
+import { Observable, Subject } from 'rxjs';
+import { Cantidad_tipo_desastre } from '../models/Cantidad_tipo_desastre';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
 })
 export class AlertaService {
   private url = `${base_url}/alertas`;
+  private listaCambio = new Subject<Alerta[]>();
   private listaCambio = new Subject<Alerta[]>();
 
   constructor(private http: HttpClient) { }

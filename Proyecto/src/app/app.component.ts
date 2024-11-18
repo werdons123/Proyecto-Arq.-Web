@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { LoginService } from './services/login.service';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { LoginService } from './services/login.service';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { ZonaComponent } from './components/zona/zona.component';
 import { SimulacroComponent } from './components/simulacro/simulacro.component';
 import { ContactoComponent } from './components/contacto/contacto.component';

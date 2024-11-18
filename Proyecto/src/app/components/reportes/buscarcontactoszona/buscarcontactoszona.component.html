@@ -1,0 +1,36 @@
+<br />
+<br />
+<h1>Buscar Contactos de Ayuda por Nombre</h1>
+<form [formGroup]="form" (submit)="buscar()" class="form-container">
+  <div class="input-container">
+    <mat-form-field>
+      <mat-label>Nombre Zona</mat-label>
+      <input matInput formControlName="hnombre" />
+    </mat-form-field>
+    <br />
+    <button mat-flat-button class="custom-button">Buscar</button>
+  </div>
+</form>
+<br />
+<br />
+<div class="container">
+  <div>
+    <div class="card-container">
+      <mat-card *ngFor="let card of dataSource.data" class="card">
+        <mat-card-title>{{ card.nombre_institucion }}</mat-card-title>
+        <mat-card-content>Zona: {{ card.nombre_zona }}</mat-card-content>
+        <mat-card-content>Teléfono: {{ card.telefono_institucion }}</mat-card-content>
+      </mat-card>
+    </div>
+    <div class="paginador">
+      <mat-paginator
+        [length]="dataSource.data.length"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page"
+        (page)="updatePaginator($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

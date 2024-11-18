@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/enviroment';
+import { environment } from '../../environments/enviroment';
 import { HttpClient } from '@angular/common/http';
 import { Zona } from '../models/Zona';
 import { Subject, Observable} from 'rxjs';
@@ -11,6 +12,8 @@ const base_url = environment.base;
 })
 export class ZonaService {
   private url = `${base_url}/zonas`;
+  private listaCambio = new Subject<Zona[]>();
+  
   private listaCambio = new Subject<Zona[]>();
   
 

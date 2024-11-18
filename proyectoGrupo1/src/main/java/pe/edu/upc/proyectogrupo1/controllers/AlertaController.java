@@ -30,6 +30,7 @@ public class AlertaController {
         Alerta al = m.map(dto,Alerta.class);
         aS.insert(al);
     }
+
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){aS.delete(id);}
 

@@ -3,7 +3,7 @@ import { environment } from '../../environments/enviroment';
 import { HttpClient } from '@angular/common/http';
 import { Zona_contacto_ayuda } from '../models/Zona_contacto_ayuda';
 import { Subject } from 'rxjs';
-import { contactoDTO } from '../models/contactoDTO';
+import { Contacto_ayuda } from '../models/Contacto_ayuda';
 const base_url = environment.base;
 
 @Injectable({
@@ -30,8 +30,8 @@ export class ZonaContactoService {
     this.listaCambio.next(listaNueva);
   }
 
-  getcontactos(n: string) {
-    const params = { nombreZona: n };
-    return this.http.get<contactoDTO[]>(`${this.url}/listarContactosPorZona`, { params });
+  buscar(nombre:string) {
+    return this.http.get<Contacto_ayuda[]>(`${this.url}/listarContactosPorZona?nombreZona=${nombre}`);
   }
+  
 }
