@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.AlertaDTO;
 import pe.edu.upc.proyectogrupo1.dtos.CantidadTipoDesastreDTO;
+import pe.edu.upc.proyectogrupo1.dtos.ContactoAyudaDTO;
 import pe.edu.upc.proyectogrupo1.entities.Alerta;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IAlertaService;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +39,12 @@ public class AlertaController {
         ModelMapper m = new ModelMapper();
         Alerta al = m.map(dto, Alerta.class);
         aS.update(al);
+    }
+    @GetMapping("/{id}")
+    public AlertaDTO buscarPorId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        AlertaDTO dto = m.map(aS.listId(id),AlertaDTO.class);
+        return dto;
     }
 
     @GetMapping("/cantidadPorTipo")
