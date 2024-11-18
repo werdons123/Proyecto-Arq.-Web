@@ -4,15 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Alerta } from '../models/Alerta';
 import { Observable, Subject } from 'rxjs';
 import { Cantidad_tipo_desastre } from '../models/Cantidad_tipo_desastre';
-import { Observable, Subject } from 'rxjs';
-import { Cantidad_tipo_desastre } from '../models/Cantidad_tipo_desastre';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
 })
 export class AlertaService {
   private url = `${base_url}/alertas`;
-  private listaCambio = new Subject<Alerta[]>();
   private listaCambio = new Subject<Alerta[]>();
 
   constructor(private http: HttpClient) { }
@@ -33,5 +30,14 @@ export class AlertaService {
 
   cantidadPorTipo():Observable<Cantidad_tipo_desastre[]>{
     return this.http.get<Cantidad_tipo_desastre[]>(`${this.url}/cantidadPorTipo`);
+  }
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+  listId(id: number) {
+    return this.http.get<Alerta>(`${this.url}/${id}`);
+  }
+  update(al: Alerta) {
+    return this.http.put(this.url, al);
   }
 }

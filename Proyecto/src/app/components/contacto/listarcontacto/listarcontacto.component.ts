@@ -19,7 +19,7 @@ export class ListarcontactoComponent implements OnInit{
   role: string = '';
   dataSource: MatTableDataSource<Contacto_ayuda> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
 
   constructor(private cS: ContactoAyudaService, private loginService: LoginService) {}
 

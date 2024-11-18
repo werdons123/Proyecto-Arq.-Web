@@ -1,4 +1,3 @@
-
 export class Contacto_ayuda{
     idContactoAyuda:number=0
     nombreInstitucion:string=""

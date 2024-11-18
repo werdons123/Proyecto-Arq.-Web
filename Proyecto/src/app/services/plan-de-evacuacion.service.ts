@@ -36,5 +36,10 @@ export class PlanDeEvacuacionService {
   update(plan: PlanEvacuacion) {
     return this.http.put(this.url,plan);
   }
+
+  listarPorZona(idZona: number): Observable<PlanEvacuacion[]> {
+    return this.http.get<PlanEvacuacion[]>(`${this.url}/por-zona/${idZona}`);
+  }
+  
   
 }

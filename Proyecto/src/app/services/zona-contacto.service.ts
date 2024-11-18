@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Zona_contacto_ayuda } from '../models/Zona_contacto_ayuda';
 import { Subject } from 'rxjs';
 import { Contacto_ayuda } from '../models/Contacto_ayuda';
+import { contactoDTO } from '../models/contactoDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -29,9 +30,20 @@ export class ZonaContactoService {
   setList(listaNueva: Zona_contacto_ayuda[]) {
     this.listaCambio.next(listaNueva);
   }
-
-  buscar(nombre:string) {
-    return this.http.get<Contacto_ayuda[]>(`${this.url}/listarContactosPorZona?nombreZona=${nombre}`);
+  update(zc:Zona_contacto_ayuda ) {
+    return this.http.put(this.url, zc);
   }
-  
+
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
+  listId(id: number) {
+    return this.http.get<Zona_contacto_ayuda>(`${this.url}/${id}`);
+  }
+
+  getcontactos(n: string) {
+    const params = { nombreZona: n };
+    return this.http.get<contactoDTO[]>(`${this.url}/listarContactosPorZona`, { params });
+  }
 }

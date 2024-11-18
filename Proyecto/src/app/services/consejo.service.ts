@@ -12,8 +12,6 @@ export class ConsejoService {
   private url = `${base_url}/consejos`;
   private listaCambio = new Subject<Consejo[]>();
 
-  private listaCambio = new Subject<Consejo[]>();
-
   constructor(private http: HttpClient) { }
   list() {
     return this.http.get<Consejo[]>(this.url);
