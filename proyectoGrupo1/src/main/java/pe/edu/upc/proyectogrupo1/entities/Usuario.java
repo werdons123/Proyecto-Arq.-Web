@@ -42,8 +42,9 @@ public class Usuario implements Serializable {
     private String password;
     private Boolean enabled;
     @JsonIgnore
-    @OneToMany(mappedBy = "us", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Rol> roles;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idRol", nullable = true)
+    private List<Rol>roles;
 
     public Usuario(int id_usuario, String nombre, String apellidos, LocalDate fechanacimiento, String correo, String ruc, String direccion, String telefono, String username, String password, Boolean enabled, List<Rol> roles) {
         this.id_usuario = id_usuario;

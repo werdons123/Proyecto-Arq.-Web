@@ -29,7 +29,7 @@ public class RolController {
         rS.insert(r);
     }
     @GetMapping("/{id}")
-    public RolDTO buscarPorId(@PathVariable("id") Integer id){
+    public RolDTO buscarPorId(@RequestParam ("id") Integer id){
         ModelMapper m=new ModelMapper();
         RolDTO dto=m.map(rS.listId(id),RolDTO.class);
         return dto;

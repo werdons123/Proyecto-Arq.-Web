@@ -16,17 +16,22 @@ public class Zona {
 
     @Column(name = "ubicacion",nullable = false,length = 40)
     private String ubicacion;
+    @Column(name = "latitud",nullable = false,length = 40)
+    private Double latitud;
+    @Column(name = "longitud",nullable = false,length = 40)
+    private Double longitud;
 
 
     public Zona() {
     }
 
-    public Zona(int id_Zona, String nombre_zona, String descripcion, String ubicacion) {
+    public Zona(int id_Zona, String nombre_zona, String descripcion, String ubicacion, Double latitud, Double longitud) {
         this.id_Zona = id_Zona;
         this.nombre_zona = nombre_zona;
         this.descripcion = descripcion;
         this.ubicacion = ubicacion;
-
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public int getId_Zona() {
@@ -41,8 +46,8 @@ public class Zona {
         return nombre_zona;
     }
 
-    public void setNombre_zona(String nombreZona) {
-        this.nombre_zona = nombreZona;
+    public void setNombre_zona(String nombre_zona) {
+        this.nombre_zona = nombre_zona;
     }
 
     public String getDescripcion() {
@@ -61,6 +66,19 @@ public class Zona {
         this.ubicacion = ubicacion;
     }
 
+    public Double getLatitud() {
+        return latitud;
+    }
 
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
 
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
 }
