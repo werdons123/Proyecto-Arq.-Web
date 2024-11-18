@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { Component, OnInit, ViewChild} from '@angular/core';
 import { Zona } from '../../../models/Zona';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ZonaService } from '../../../services/zona.service'; 

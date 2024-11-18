@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PlanEvacuacion } from '../models/Plan_de_Evacuacion';
 import { environment } from '../../environments/enviroment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 const base_url = environment.base;
 
 @Injectable({
