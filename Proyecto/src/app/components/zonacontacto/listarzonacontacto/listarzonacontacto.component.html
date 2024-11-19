@@ -1,0 +1,49 @@
+<div class="container">
+    <div style="text-align: center;margin: 10%;"><h1>Lista de zonas_contacto</h1></div>
+    <div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="c1">
+          <th mat-header-cell *matHeaderCellDef>Código</th>
+          <td mat-cell *matCellDef="let element">{{ element.idZonaContactoAyuda }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>Id_zona</th>
+          <td mat-cell *matCellDef="let element">{{ element.zo.id_Zona }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef>Id_contacto</th>
+          <td mat-cell *matCellDef="let element">{{ element.coay.idContactoAyuda }}</td>
+        </ng-container>
+        <ng-container matColumnDef="acciones1">
+          <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+          <td mat-cell *matCellDef="let element">
+            <span style="display: inline-block; margin-right: 10px;">
+              <mat-icon style="color: #a3cfe3" [routerLink]="['ediciones5', element.idZonaContactoAyuda]">edit</mat-icon>
+            </span>
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="acciones2">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let element">
+            <span style="display: inline-block;">
+              <mat-icon style="color: #a3cfe3" (click)="eliminar(element.idZonaContactoAyuda)">delete</mat-icon>
+            </span>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <div class = "paginador">
+        <mat-paginator [length]="dataSource.data.length" 
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>

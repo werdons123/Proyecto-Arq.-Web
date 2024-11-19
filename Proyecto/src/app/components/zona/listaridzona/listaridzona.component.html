@@ -1,0 +1,23 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<div class="container">
+    <div style="text-align: center; margin: 10%;">
+        <h1>{{ zona.nombre_zona }}</h1>
+    </div>
+    <div class="zona">
+        <google-map
+            [height]="'80vh'"
+            [width]="'100%'"
+            [center]="center"
+            [zoom]="zoom">
+            <map-marker
+                [position]="center"
+                [label]="label">
+            </map-marker>
+        </google-map>
+        <div class="text-container">
+            <p>{{ zona.descripcion }}</p>
+            <p>{{ zona.ubicacion }}</p>
+        </div>
+    </div>
+</div>
+

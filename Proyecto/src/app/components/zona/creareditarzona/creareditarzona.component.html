@@ -1,0 +1,79 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<div class="container" style="text-align: center; margin: 2%; display: flex; flex-direction: row;">
+  <!-- Formulario a la izquierda -->
+  <div class="form-container" style="flex: 1; margin-right: 20px;">
+    <div *ngIf="!edicion"><h1>Registro de Zonas</h1></div>
+    <div *ngIf="edicion"><h1>Edición de Zonas</h1></div>
+    
+    <form [formGroup]="form" (submit)="insertar3()">
+      
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="hnombre" (input)="buscarLugares()" [matAutocomplete]="auto">
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
+            >El nombre es obligatorio.</mat-error>
+      </mat-form-field>
+      
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionarLugar($event)">
+        <mat-option *ngFor="let lugar of lugares" [value]="lugar">
+          {{ lugar.nombre }}
+        </mat-option>
+      </mat-autocomplete>
+      <br /><br />
+      
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="hdescripcion"></textarea>
+        <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')"
+            >La descripcion es obligatoria.</mat-error>
+      </mat-form-field>
+      <br />
+      
+      <mat-form-field class="example-full-width">
+        <mat-label>Ubicación</mat-label>
+        <input matInput formControlName="hubicacion" />
+        <mat-error *ngIf="form.get('hubicacion')?.hasError('required')"
+            >La ubicación es obligatoria.</mat-error>
+      </mat-form-field>
+      <br />
+      
+      <mat-form-field class="example-full-width">
+        <mat-label>Latitud</mat-label>
+        <input matInput formControlName="hlatitud" />
+        <mat-error *ngIf="form.get('hlatitud')?.hasError('required')"
+            >La latitud es obligatoria.
+        </mat-error>
+        <mat-error *ngIf="form.get('hlatitud')?.hasError('latitudInvalida')&& form.get('hlatitud')?.value">
+          Ingresar valor entre -90 y 90.
+      </mat-error>
+      </mat-form-field>
+      <br />
+      
+      <mat-form-field class="example-full-width">
+        <mat-label>Longitud</mat-label>
+        <input matInput formControlName="hlongitud" />
+        <mat-error *ngIf="form.get('hlongitud')?.hasError('required')"
+            >La longitud es obligatoria.</mat-error>
+        <mat-error *ngIf="form.get('hlongitud')?.hasError('longitudInvalida')&& form.get('hlongitud')?.value">
+              Ingresar valor entre -180 y 180.
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <div>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Mapa a la derecha -->
+  <div class="map-container" style="flex: 1; margin-top: 60px; width: 100%; height: 400px;">
+    <google-map 
+      [center]="mapaCentro" 
+      [zoom]="mapZoom"
+      height="100%" 
+      width="100%">
+      <map-marker [position]="mapaCentro"></map-marker>
+    </google-map>
+  </div>
+</div>

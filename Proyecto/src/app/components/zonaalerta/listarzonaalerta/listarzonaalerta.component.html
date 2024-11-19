@@ -1,0 +1,25 @@
+<div class="container">
+    <div style="text-align: center;margin: 10%;"><h1>Lista de Zona Alerta</h1></div>
+    <div>
+      <div class="card-container">
+        <mat-card *ngFor="let card of dataSource.filteredData" class="card">
+          <mat-card-title>{{ card.zo.nombre_zona  }}</mat-card-title>
+          <mat-card-content>{{ card.al.tipo_desastre  }}</mat-card-content>
+        <div class = "iconos">
+          <mat-icon style="color:#1A74BE" (click)="eliminar(card.id_Zona)">delete</mat-icon>
+          <mat-icon style="color:#1A74BE" [routerLink]="['ediciones6',card.id_Zona]">edit</mat-icon>
+          <mat-icon style="color:#1A74BE" [routerLink]="['listadoid6',card.id_Zona]">visibility</mat-icon>
+        </div>
+        </mat-card>
+      </div>
+      <div class = "paginador">
+      <mat-paginator [length]="dataSource.data.length" 
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+      (page)="updatePaginator($event)">
+      </mat-paginator>
+    </div>
+    </div>
+
+  </div>
