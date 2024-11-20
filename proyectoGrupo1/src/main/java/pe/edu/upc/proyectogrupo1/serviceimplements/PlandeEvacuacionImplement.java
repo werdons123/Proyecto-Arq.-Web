@@ -2,7 +2,7 @@ package pe.edu.upc.proyectogrupo1.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.proyectogrupo1.dtos.Plan_de_EvacuacionDTO;
+import pe.edu.upc.proyectogrupo1.entities.ContactoAyuda;
 import pe.edu.upc.proyectogrupo1.entities.Plan_de_Evacuacion;
 import pe.edu.upc.proyectogrupo1.repositories.IPlan_de_EvacuacionRepository;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IPlan_de_EvacuacionService;
@@ -46,7 +46,6 @@ public class PlandeEvacuacionImplement implements IPlan_de_EvacuacionService {
 
     @Override
     public List<Plan_de_Evacuacion> listarPorZona(Integer idZona) {
-        return pR.listarPlanesPorZona(idZona);
-    }
+        return pR.listarPlanesPorZona(idZona);    }
 
 }

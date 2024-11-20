@@ -3,6 +3,7 @@ import { environment } from '../../environments/enviroment';
 import { HttpClient } from '@angular/common/http';
 import { Zona } from '../models/Zona';
 import { Subject, Observable} from 'rxjs';
+import { QuantityAlertsByZoneDTO } from '../models/QuantityAlertsByZoneDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -11,6 +12,7 @@ const base_url = environment.base;
 export class ZonaService {
   private url = `${base_url}/zonas`;
   private listaCambio = new Subject<Zona[]>();
+  
   
 
   constructor(private http: HttpClient) { }
@@ -47,4 +49,7 @@ export class ZonaService {
     return this.http.get<Zona[]>(`${this.url}/buscar`, { params });
   }
   
+  getalertasbyzona(): Observable<QuantityAlertsByZoneDTO[]>{
+    return this.http.get<QuantityAlertsByZoneDTO[]>(`${this.url}/cantidadesalertas`);
+  }
 }

@@ -1,7 +1,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <div class="container">
   <div style="text-align: center;margin: 10%;"><h1>Lista de Zonas</h1></div>
-  <div class="search-container">
+  <div class="search-container" >
 
     <form class="example-form" [formGroup]="form">
       <mat-form-field class="example-full-width">
@@ -12,13 +13,13 @@
     </form>
   </div>
   <div>
-    <div class="card-container">
+    <div class="card-container" *ngIf="verificar()">
       <mat-card *ngFor="let card of dataSource.filteredData" class="card">
         <mat-card-title>{{ card.nombre_zona  }}</mat-card-title>
         <mat-card-content>{{ card.ubicacion  }}</mat-card-content>
       <div class = "iconos">
-        <mat-icon style="color:#1A74BE" (click)="eliminar(card.id_Zona)">delete</mat-icon>
-        <mat-icon style="color:#1A74BE" [routerLink]="['ediciones',card.id_Zona]">edit</mat-icon>
+        <mat-icon style="color:#1A74BE" *ngIf="isADMIN()" (click)="eliminar(card.id_Zona)">delete</mat-icon>
+        <mat-icon style="color:#1A74BE" *ngIf="isADMIN()" [routerLink]="['ediciones',card.id_Zona]">edit</mat-icon>
         <mat-icon style="color:#1A74BE" [routerLink]="['listadoid2',card.id_Zona]">visibility</mat-icon>
       </div>
       </mat-card>

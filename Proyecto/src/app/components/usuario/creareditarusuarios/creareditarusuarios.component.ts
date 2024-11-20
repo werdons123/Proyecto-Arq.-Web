@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,39 +11,66 @@ import { MatRadioModule } from '@angular/material/radio';
 import { Usuario } from '../../../models/Usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Rol } from '../../../models/Rol';
+import { RolService } from '../../../services/rol.service';
+import { MatSelectModule } from '@angular/material/select';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
   selector: 'app-creareditarusuarios',
   standalone: true,
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './creareditarusuarios.component.html',
   styleUrl: './creareditarusuarios.component.css'
 })
-export class CreareditarusuariosComponent {
+export class CreareditarusuariosComponent implements OnInit{
+  role: string = '';
   form:FormGroup = new FormGroup({});
   usuario: Usuario = new Usuario();
   id: number = 0;
   edicion: boolean = false;
-  listaUsuarios: Usuario[] = [];
+
+ 
+  
+  listaUsuarios: Usuario[]=[]
+
+  estados: { value: boolean; viewValue: string }[] = [
+    { value: true, viewValue: 'Activo' },
+    { value: false, viewValue: 'Deshabilitado' },
+  ];
 
   constructor(
     private uS: UsuarioService,
     private formBuilder: FormBuilder,
     private router:Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private rS: RolService,
+    private loginService: LoginService
     
   ) {}
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isADMIN() {
+    
+    return this.role === 'ADMIN';
+  }
+
+  isCLIENTE() {
+    return this.role === 'CLIENTE';
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe((data:Params) => {
       this.id = data['id'];
@@ -53,25 +80,24 @@ export class CreareditarusuariosComponent {
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hnombre: ['usuario', Validators.required],
+      hnombre: ['', Validators.required],
       hapellido: ['', Validators.required],
       hfecha: ['', Validators.required],
       hcorreo: ['', [Validators.required, Validators.email]],
-      hruc: ['', [Validators.pattern(/^\d{11}$/)]],
-      hdireccion: ['', Validators.required],
+      hruc: ['', Validators.pattern(/^\d{11}$/)],
+      hdireccion: [''],
       htelefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
-      husername: ['', [Validators.required, Validators.minLength(3), this.ValidarUsuarioUnico.bind(this)]],
+      husername: ['', [Validators.required, Validators.minLength(3)]],
       hpassword: [
         '',
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+          Validators.minLength(8)
         ]
-      ]
+      ],
+      hestado: [''],
     });
-
-}
+  }
 insertar():void {
   this.form.markAllAsTouched();
 
@@ -80,6 +106,7 @@ insertar():void {
     return;
   }
   if(this.form.valid) {
+    
     this.usuario.id_usuario = this.form.value.hcodigo;
     this.usuario.nombre = this.form.value.hnombre;
     this.usuario.apellidos = this.form.value.hapellido;
@@ -90,6 +117,9 @@ insertar():void {
     this.usuario.telefono = this.form.value.htelefono;
     this.usuario.username = this.form.value.husername;
     this.usuario.password = this.form.value.hpassword;
+    this.usuario.enabled = true;
+
+
     if(this.edicion) {
       this.uS.update(this.usuario).subscribe((data) => {
         this.uS.list().subscribe((data)=> {
@@ -102,10 +132,7 @@ insertar():void {
           this.uS.setList(data);
         });
       });
-
     }
-    
-  
   }
   this.router.navigate(['usuarios']);
 }
@@ -114,6 +141,7 @@ init() {
   if(this.edicion) {
     this.uS.listaId(this.id).subscribe((data) => {
       this.form = new FormGroup({
+
         hcodigo: new FormControl(data.id_usuario),
         hnombre: new FormControl(data.nombre),
         hapellido: new FormControl(data.apellidos),
@@ -124,18 +152,15 @@ init() {
         htelefono: new FormControl(data.telefono),
         husername: new FormControl(data.username),
         hpassword: new FormControl(data.password),
+        hestado: new FormControl(data.enabled),
       });
     });
   }
 }
 
+
 ValidarUsuarioUnico(control: AbstractControl) {
   return this.listaUsuarios.includes(control.value) ? { uniqueUsername: true } : null;
 }
-
-EsEmpresaSeleccionada(): boolean {
-  return this.form.get('tipoUsuario')?.value === 'empresa';
-}
-
 
 }

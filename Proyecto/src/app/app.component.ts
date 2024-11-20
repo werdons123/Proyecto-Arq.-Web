@@ -17,6 +17,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +41,9 @@ import { LoginComponent } from './components/login/login.component';
     MatButtonModule,
     RouterModule,
     CommonModule,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -47,12 +51,14 @@ import { LoginComponent } from './components/login/login.component';
 export class AppComponent {
   role: string = '';
   username: string = '';
+  userid: number | null = null;
   constructor(private loginService: LoginService) {}
   cerrar() {
     sessionStorage.clear();
   }
 
   verificar() {
+    this.userid = this.loginService.getId();
     this.role = this.loginService.showRole();
     return this.loginService.verificar();
   }

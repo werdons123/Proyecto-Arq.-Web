@@ -3,11 +3,9 @@ package pe.edu.upc.proyectogrupo1.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.proyectogrupo1.dtos.CantidadTipoDesastreDTO;
-import pe.edu.upc.proyectogrupo1.dtos.ContactoAyudaDTO;
-import pe.edu.upc.proyectogrupo1.dtos.ZonaContactoAyudaDTO;
-import pe.edu.upc.proyectogrupo1.dtos.contactoDTO;
+import pe.edu.upc.proyectogrupo1.dtos.*;
 import pe.edu.upc.proyectogrupo1.entities.ContactoAyuda;
+import pe.edu.upc.proyectogrupo1.entities.Simulacro;
 import pe.edu.upc.proyectogrupo1.entities.ZonaContactoAyuda;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IZonaContactoAyudaService;
 
@@ -32,6 +30,20 @@ public class ZonaContactoAyudaController {
         ModelMapper m = new ModelMapper();
         ZonaContactoAyuda zca = m.map(dto, ZonaContactoAyuda.class);
         zcaR.insert(zca);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) { zcaR.delete(id); }
+    @PutMapping
+    public void modificar(@RequestBody ZonaContactoAyudaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        ZonaContactoAyuda zc = m.map(dto, ZonaContactoAyuda.class);
+        zcaR.update(zc);
+    }
+    @GetMapping("/{id}")
+    public ZonaContactoAyudaDTO buscarPorId(@PathVariable Integer id) {
+        ModelMapper m = new ModelMapper();
+        ZonaContactoAyudaDTO dto = m.map(zcaR.listId(id), ZonaContactoAyudaDTO.class);
+        return dto;
     }
 
     @GetMapping("/listarContactosPorZona")

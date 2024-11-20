@@ -1,13 +1,13 @@
 
 <mat-toolbar class="custom-toolbar" *ngIf="verificar()">
   <div>
-    <button mat-button [routerLink]="['/homes']" style="color: white">
+    <button mat-button [routerLink]="['principal']" style="color: white">
       <mat-icon>home</mat-icon>Home
     </button>
     <button mat-button [matMenuTriggerFor]="menuZona" style="color: white">
       <mat-icon>explore</mat-icon>Zonas
     </button>
-    <button mat-button [matMenuTriggerFor]="menuContactoAyuda" style="color: white" *ngIf="isADMIN()">
+    <button mat-button [matMenuTriggerFor]="menuContactoAyuda" style="color: white" >
       <mat-icon>contact_support</mat-icon>Contactos de Ayuda
     </button>
     <button mat-button [matMenuTriggerFor]="menuConsejo" style="color: white">
@@ -22,7 +22,6 @@
     <button mat-button [matMenuTriggerFor]="menuZonaContacto" style="color: white" *ngIf="isADMIN()">
       <mat-icon>compare_arrows</mat-icon>Zona Contacto
     </button>
-    <br />
     <button mat-button [matMenuTriggerFor]="menuPlanEvacuacion" style="color: white">
       <mat-icon>compare_arrows</mat-icon>Plan de Evacuacion
     </button>
@@ -32,8 +31,15 @@
     <button mat-button [matMenuTriggerFor]="menuReporte" style="color: white">
       <mat-icon>compare_arrows</mat-icon>Reportes
     </button>
+    <button  mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white" *ngIf="isADMIN()">
+      <mat-icon>person</mat-icon>Usuarios
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isADMIN()">
+      <mat-icon>compare_arrows</mat-icon> Rol
+    </button>
+    <span class="spacer"></span>
   </div>
-    <div class="right-menu">
+    <div class="usuarios-button">
       <button mat-button [matMenuTriggerFor]="menuSalir"  style="color: white">
         <mat-icon>person</mat-icon>Usuario
       </button>
@@ -41,7 +47,7 @@
   
 </mat-toolbar>
 
-<mat-menu #menuZona="matMenu">
+<mat-menu #menuZona="matMenu" >
   <button mat-menu-item routerLink="/zonas">Listar Zonas</button>
   <button *ngIf="isADMIN()" mat-menu-item routerLink="/zonas/nuevazona">Registrar Zonas</button>
 </mat-menu>
@@ -62,8 +68,8 @@
   <button  *ngIf="isADMIN()" mat-menu-item routerLink="/planesevacuacion/nuevo">Registrar Planes de Evacuación</button>
 </mat-menu>
 <mat-menu #menuSimulacro="matMenu">
-  <button mat-menu-item routerLink="/simualcro">Listar Planes de Evacuación</button>
-  <button  *ngIf="isADMIN()" mat-menu-item routerLink="/simualcro/nuevo">Registrar Planes de Evacuación</button>
+  <button mat-menu-item routerLink="/simualcro">Listar Simulacros</button>
+  <button  *ngIf="isADMIN()" mat-menu-item routerLink="/simualcro/nuevo">Registrar Simulacros</button>
 </mat-menu>
 <mat-menu #menuZonaAlerta="matMenu">
   <button mat-menu-item routerLink="/zonaAlerta">Listar Alertas</button>
@@ -73,17 +79,43 @@
   <button mat-menu-item routerLink="/zonacontactosayuda">Listar Contacto Ayuda</button>
   <button mat-menu-item routerLink="/zonacontactosayuda/nuevo">Registrar Contacto Ayuda</button>
 </mat-menu>
+<mat-menu #menuUsuarios="matMenu">
+  <button *ngIf="isADMIN()" mat-menu-item routerLink="/usuarios">Listar Usuario</button>
+  <button *ngIf="isADMIN()" mat-menu-item routerLink="/usuarios/nuevo">Registrar Usuario</button>
+  <button mat-menu-item [routerLink]="['/usuarios/configurar', userid]">Configurar Usuario</button>
+</mat-menu>
+<mat-menu #menuRol="matMenu">
+  <button mat-menu-item routerLink="/roles">
+    <mat-icon>list_alt</mat-icon> Listar roles
+  </button>
+  <button mat-menu-item routerLink="/roles/nuevo">
+    <mat-icon>add_circle_outline</mat-icon> Registrar rol
+  </button>
+</mat-menu>
 <mat-menu #menuReporte="matMenu"> 
   <button mat-menu-item routerLink="/reportes/cantidadAlertasTipo">    
     <mat-icon>info</mat-icon> Cantidad de Alertas por Tipo de Desastre
   </button>
   <button mat-menu-item routerLink="/reportes/porNombreZona">    
-    <mat-icon>info</mat-icon> Cantidad de Alertas por Tipo de Desastre
+    <mat-icon>info</mat-icon> Contactos por Nombre de la Zona
+  </button>
+  <button mat-menu-item routerLink="/reportes/cantidadAlertasUsuario">    
+    <mat-icon>info</mat-icon> Cantidad de Alertas por Usuario
+  </button>
+  <button mat-menu-item routerLink="/reportes/cantidadAlertasZona">    
+    <mat-icon>info</mat-icon> Cantidad de Alertas por Zona
+  </button>
+  <button mat-menu-item routerLink="/reportes/planeporzona">    
+    <mat-icon>info</mat-icon> Reporte de Planes de Evacuación por Zona
+  </button>
+  <button mat-menu-item routerLink="/reportes/consejosportipo">    
+    <mat-icon>info</mat-icon> Reporte de Consejos por Tipo de Desastres
   </button>
   
 </mat-menu>
+
 <mat-menu #menuSalir="matMenu">
-  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+  <button mat-menu-item routerLink="/home" (click)="cerrar()">
     <mat-icon>logout</mat-icon>
     <span>Cerrar sesión</span>
   </button>

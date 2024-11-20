@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlertNotificationService } from '../../../services/alert-notification.service';
 
 @Component({
   selector: 'app-creareditaralerta',
@@ -60,7 +61,8 @@ export class CreareditaralertaComponent implements OnInit{
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private alertaNotificacionService:AlertNotificationService,
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data:Params) => {
@@ -127,6 +129,9 @@ export class CreareditaralertaComponent implements OnInit{
         this.aS.insert(this.aler).subscribe((data) => {
           this.aS.list().subscribe((data) => {
             this.aS.setList(data);
+
+            this.alertaNotificacionService.notifyNewAlert('Se ha registrado una nueva alerta.');
+            
           });
         });
       }

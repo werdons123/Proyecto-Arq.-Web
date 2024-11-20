@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Entity
 @Table(name = "Alerta")
 
@@ -16,7 +18,7 @@ public class Alerta {
     @Column(name = "fecha",nullable = false)
     private LocalDate fecha;
     @Column(name = "hora",nullable = false)
-    private Time hora;
+    private LocalTime hora;
     @Column(name = "descripcion",nullable = false)
     private String descripcion;
     @Column(name = "nivel_gravedad",nullable = false)
@@ -30,7 +32,7 @@ public class Alerta {
 
     }
 
-    public Alerta(int id_alerta, String tipo_desastre, LocalDate fecha, Time hora, String descripcion, String nivel_gravedad, Boolean estado, Usuario us) {
+    public Alerta(int id_alerta, String tipo_desastre, LocalDate fecha, LocalTime hora, String descripcion, String nivel_gravedad, Boolean estado, Usuario us) {
         this.id_alerta = id_alerta;
         this.tipo_desastre = tipo_desastre;
         this.fecha = fecha;
@@ -65,11 +67,11 @@ public class Alerta {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

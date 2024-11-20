@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/enviroment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { QuantityAlertsByUserDTO } from '../models/QuantityAlertsByUserDTO';
 
 const base_url = environment.base;
 
@@ -38,4 +39,13 @@ export class UsuarioService {
   update(us: Usuario) {
     return this.http.put(this.url,us);
   }
+
+  existsByUsername(username: string):Observable<boolean>{
+    return this.http.get<boolean>(`${this.url}/?username=${username}`)
+  }
+
+  getalertasbyuser(): Observable<QuantityAlertsByUserDTO[]>{
+    return this.http.get<QuantityAlertsByUserDTO[]>(`${this.url}/cantidadesalertas`);
+  }
+  
 }

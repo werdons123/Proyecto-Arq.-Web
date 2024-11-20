@@ -25,17 +25,40 @@ import { ListaridsimulacroComponent } from './components/simulacro/listaridsimul
 import { ContactospornombrezonaComponent } from './components/reportes/contactospornombrezona/contactospornombrezona.component';
 import { CantidadAlertasTipoComponent } from './components/reportes/cantidad-alertas-tipo/cantidad-alertas-tipo.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
-import { ListaridalertaComponent } from './components/alerta/listaridalerta/listaridalerta.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ListarconsejoidComponent } from './components/consejo/listarconsejoid/listarconsejoid.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { CreareditarusuariosComponent } from './components/usuario/creareditarusuarios/creareditarusuarios.component';
+import { ListarusuarioidComponent } from './components/usuario/listarusuarioid/listarusuarioid.component';
+import { QuantityAlertsByUserDTO } from './models/QuantityAlertsByUserDTO';
+import { UsuariosCantidadAlertasComponent } from './components/reportes/usuarios-cantidad-alertas/usuarios-cantidad-alertas.component';
+import { ZonasCantidadAlertasComponent } from './components/reportes/zonas-cantidad-alertas/zonas-cantidad-alertas.component';
+import { ListarConsejosTipoComponent } from './components/reportes/listar-consejos-tipo/listar-consejos-tipo.component';
+import { ListarPlanesZonaComponent } from './components/reportes/listar-planes-zona/listar-planes-zona.component';
+import { RolComponent } from './components/rol/rol.component';
+import { CreareditarrolComponent } from './components/rol/creareditarrol/creareditarrol.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { ListaridzonaalertaComponent } from './components/zonaalerta/listaridzonaalerta/listaridzonaalerta.component';
-
+import { ListaridalertaComponent } from './components/alerta/listaridalerta/listaridalerta.component';
 export const routes: Routes = [
     {
         path:'',
-        redirectTo:'login',
+        redirectTo:'home',
         pathMatch: 'full'
     },
     {
         path:'login', component:LoginComponent,
+    },
+    {
+        path:'register', component:RegisterComponent,
+    },
+    {
+        path:'menu', component:AppComponent,
+        canActivate: [seguridadGuard],
+    },
+    {
+        path:'principal', component:MenuComponent,
+        canActivate: [seguridadGuard],
     },
     {
     path: 'zonas',component:ZonaComponent,
@@ -72,9 +95,16 @@ export const routes: Routes = [
         children:[
             {
                 path:'nuevo', component:CreareditarconsejoComponent
+            },
+            {
+                path:'ediciones1/:id' ,component:CreareditarconsejoComponent
+            },
+            {
+                path:'listadoid/:id' ,component:ListarconsejoidComponent
             }
         ],
         canActivate: [seguridadGuard],
+        
     },
     {
         path:'alertas', component:AlertaComponent,
@@ -96,15 +126,13 @@ export const routes: Routes = [
         children:[
             {
                 path:'nuevo', component:CreareditarzonaalertaComponent
-            }
-            ,
-            {
-                path:'ediciones6/:id' ,component:CreareditarzonaalertaComponent
             },
             {
-                path:'listadoid6/:id',component:ListaridzonaalertaComponent,
+                path:'ediciones3/:id' ,component:CreareditarzonaalertaComponent
+            },
+            {
+                path:'listadoid3/:id' ,component:ListaridzonaalertaComponent
             }
-            
         ],
         canActivate: [seguridadGuard],
     },
@@ -116,7 +144,8 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones5/:id' ,component:CreareditarzonacontactoComponent
-            },
+            }
+            
         ],
         canActivate: [seguridadGuard],
     },
@@ -125,6 +154,9 @@ export const routes: Routes = [
         children:[
             {
                 path:'nuevo', component:CreareditarplanesComponent,
+            },
+            {
+                path:'editar/:id' ,component:CreareditarplanesComponent
             }
         ],
         canActivate: [seguridadGuard],
@@ -146,7 +178,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'homes', component: HomeComponent, canActivate: [seguridadGuard],
+        path: 'home', component: HomeComponent
 
     },
     {
@@ -157,10 +189,55 @@ export const routes: Routes = [
             },
             {
                 path:'porNombreZona', component: ContactospornombrezonaComponent,
-            }
+            },
+            {
+                path:'cantidadAlertasUsuario', component: UsuariosCantidadAlertasComponent,
+            },
+            {
+                path:'cantidadAlertasZona', component: ZonasCantidadAlertasComponent,
+            },
+            {
+                path:'planeporzona', component: ListarPlanesZonaComponent,
+            },
+            {
+                path:'consejosportipo', component: ListarConsejosTipoComponent,
+            },
         ],
         canActivate: [seguridadGuard],
 
-    }
+    },
+    {
+        path: 'usuarios', component: UsuarioComponent,
+        children:[
+            {
+                path:'nuevo', component:CreareditarusuariosComponent
+            },
+            {
+                path:'ediciones1/:id', component:CreareditarusuariosComponent,
+            },
+            {
+                path:'listadoid/:id', component: ListarusuarioidComponent,
+            },
+            {
+                path:'configurar/:id', component:CreareditarusuariosComponent
+            }
+        ],
+        canActivate: [seguridadGuard],
+        
+
+    },
+    {
+        path:'roles', component:RolComponent,
+        children:[
+            {
+                path:'nuevo', component:CreareditarrolComponent,
+            },
+            {
+                path:'editar/:id', component:CreareditarrolComponent
+            },
+        ],
+        canActivate: [seguridadGuard],
+    },
+
     
 ];

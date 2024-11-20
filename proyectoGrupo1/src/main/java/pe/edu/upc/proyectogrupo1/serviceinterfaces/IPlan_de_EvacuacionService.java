@@ -1,7 +1,6 @@
 package pe.edu.upc.proyectogrupo1.serviceinterfaces;
 
 import org.springframework.data.repository.query.Param;
-import pe.edu.upc.proyectogrupo1.dtos.Plan_de_EvacuacionDTO;
 import pe.edu.upc.proyectogrupo1.entities.ContactoAyuda;
 import pe.edu.upc.proyectogrupo1.entities.Plan_de_Evacuacion;
 

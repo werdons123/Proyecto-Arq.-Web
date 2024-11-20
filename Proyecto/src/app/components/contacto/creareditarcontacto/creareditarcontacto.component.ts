@@ -9,6 +9,7 @@ import { ContactoAyudaService } from '../../../services/contacto-ayuda.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creareditarcontacto',
@@ -30,13 +31,18 @@ export class CreareditarcontactoComponent implements OnInit {
   contacto: Contacto_ayuda = new Contacto_ayuda();
   id: number = 0;
   edicion: boolean = false;
+  
 
   constructor(
     private cS: ContactoAyudaService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    
   ) {}
+
+  
+
   ngOnInit(): void {
     this.route.params.subscribe((data:Params) => {
       this.id = data['id'];

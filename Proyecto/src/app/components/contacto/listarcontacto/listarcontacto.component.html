@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<div class="container">
+<div class="container" *ngIf="verificar()">
     <div style="text-align: center;margin: 10%;"><h1>Lista de Contactos de ayuda</h1></div>
     <div>
       <div class="card-container">
@@ -7,8 +7,8 @@
           <mat-card-title>{{ card.nombreInstitucion  }}</mat-card-title>
           <mat-card-content>{{ card.telefono  }}</mat-card-content>
         <div class = "iconos">
-          <mat-icon style="color:#1A74BE" (click)="eliminar(card.idContactoAyuda)">delete</mat-icon>
-          <mat-icon style="color:#1A74BE" [routerLink]="['ediciones1',card.idContactoAyuda]">edit</mat-icon>
+          <mat-icon style="color:#1A74BE" *ngIf="isADMIN()" (click)="eliminar(card.idContactoAyuda)">delete</mat-icon>
+          <mat-icon style="color:#1A74BE" *ngIf="isADMIN()" [routerLink]="['ediciones1',card.idContactoAyuda]">edit</mat-icon>
           <mat-icon style="color:#1A74BE" [routerLink]="['listadoid',card.idContactoAyuda]">visibility</mat-icon>
         </div>
         </mat-card>
@@ -23,3 +23,4 @@
     </div>
     </div>
 </div>
+

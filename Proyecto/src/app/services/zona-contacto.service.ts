@@ -3,6 +3,7 @@ import { environment } from '../../environments/enviroment';
 import { HttpClient } from '@angular/common/http';
 import { Zona_contacto_ayuda } from '../models/Zona_contacto_ayuda';
 import { Subject } from 'rxjs';
+import { Contacto_ayuda } from '../models/Contacto_ayuda';
 import { contactoDTO } from '../models/contactoDTO';
 const base_url = environment.base;
 

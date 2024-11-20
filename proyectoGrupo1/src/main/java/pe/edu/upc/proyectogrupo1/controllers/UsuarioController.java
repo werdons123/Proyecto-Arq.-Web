@@ -2,6 +2,7 @@ package pe.edu.upc.proyectogrupo1.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.proyectogrupo1.dtos.QuantityUsuarioByAlertaDTO;
 import pe.edu.upc.proyectogrupo1.dtos.QuantityUsuarioByRolDTO;
@@ -20,6 +21,7 @@ public class UsuarioController {
     private IUsuarioService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listarUsuarios(){
         return uS.listarUsuarios().stream().map( x-> {
             ModelMapper m =new ModelMapper();
@@ -28,6 +30,7 @@ public class UsuarioController {
     }
 
     @GetMapping ("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public UsuarioDTO listID(@PathVariable("id") Integer id){
         ModelMapper m =new ModelMapper();
         UsuarioDTO dto = m.map(uS.listID(id),UsuarioDTO.class);
@@ -35,23 +38,27 @@ public class UsuarioController {
     }
 
     @PostMapping
+
     public void insertarUsuario(@RequestBody UsuarioDTO dto){
         ModelMapper m =new ModelMapper();
         Usuario u=m.map(dto,Usuario.class);
         uS.insert(u);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id) {
         uS.delete(id);
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('CLIENTE')")
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario d = m.map(dto, Usuario.class);
         uS.update(d);
     }
     @GetMapping("/cantidad")
+    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('CLIENTE')")
     public List<QuantityUsuarioByAlertaDTO> usuarioporalerta(){
         List<String[]> lista = uS.usuarioporalerta();
         List<QuantityUsuarioByAlertaDTO> listaDTO = new ArrayList<>();
@@ -65,6 +72,7 @@ public class UsuarioController {
 
     }
     @GetMapping("/usuario_rol")
+    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('CLIENTE')")
     public List<UsuarioDTO> usuarioporrol(){
         return uS.listarUsuarios().stream().map( x-> {
             ModelMapper m =new ModelMapper();
@@ -74,6 +82,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/cantidadesalertas")
+    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('CLIENTE')")
     public List<QuantityAlertsByUserDTO> cantidadAlertasController(){
         List<String[]> lista = uS.cantidadalertaservice();
         List<QuantityAlertsByUserDTO>listaDTO=new ArrayList<>();

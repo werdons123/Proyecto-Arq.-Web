@@ -13,14 +13,29 @@ import { LoginService } from '../../../services/login.service';
   standalone: true,
   imports: [MatTableModule, MatIconModule, RouterLink,MatPaginator,CommonModule,MatCardModule],
   templateUrl: './listarcontacto.component.html',
-  styleUrl: './listarcontacto.component.css'
+  styleUrl: './listarcontacto.component.css',
 })
 export class ListarcontactoComponent implements OnInit{
+  role: string = '';
   dataSource: MatTableDataSource<Contacto_ayuda> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private cS: ContactoAyudaService) {}
- 
+
+  constructor(private cS: ContactoAyudaService, private loginService: LoginService) {}
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+
+  isADMIN() {
+    
+    return this.role === 'ADMIN';
+  }
+
+  isCLIENTE() {
+    return this.role === 'CLIENTE';
+  }
 
   ngOnInit(): void {
     this.cS.list().subscribe((data)=>{

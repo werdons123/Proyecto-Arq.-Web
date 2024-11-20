@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/enviroment';
 import { HttpClient } from '@angular/common/http';
 import { Consejo } from '../models/Consejo';
-import { Subject } from 'rxjs';
+import { Cons, Observable, Subject } from 'rxjs';
 const base_url = environment.base;
 
 @Injectable({
@@ -26,5 +26,17 @@ export class ConsejoService {
 
   setList(listaNueva: Consejo[]) {
     this.listaCambio.next(listaNueva);
+  }
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+  listaId(id: number) {
+    return this.http.get<Consejo>(`${this.url}/${id}`);
+  }
+  update(con: Consejo) {
+    return this.http.put(this.url,con);
+  }
+  buscarPorTipo(tipo: string): Observable <Consejo[]> {
+    return this.http.get<Consejo[]>(`${this.url}?tipo=${tipo}`);
   }
 }

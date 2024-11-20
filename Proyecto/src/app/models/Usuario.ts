@@ -6,10 +6,11 @@ export class Usuario {
   apellidos: string = '';
   fechanacimiento: Date = new Date(Date.now());
   correo: string = '';
-  ruc?: string;
-  direccion?: string;
+  ruc?: string = '';
+  direccion: string = '';
   telefono: string = '';
   username: string = '';
   password: string = '';
-  ro?: Rol;
+  enabled: boolean = true;
+  roles: Rol[] = []
 }

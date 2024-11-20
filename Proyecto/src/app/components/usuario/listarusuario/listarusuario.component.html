@@ -1,58 +1,27 @@
-<div>
-    <div><h2>Listar Usuarios</h2></div>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<div class="container">
+    <div style="text-align: center;margin: 10%;"><h1>Lista de Contactos de ayuda</h1></div>
     <div>
-        <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-            <ng-container matColumnDef="c1">
-                <th mat-header-cell *matHeaderCellDef> Id Usuario </th>
-                <td mat-cell *matCellDef="let element"> {{element.id_usuario}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c2">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c3">
-                <th mat-header-cell *matHeaderCellDef> Apellidos </th>
-                <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c4">
-                <th mat-header-cell *matHeaderCellDef> Fecha Nacimiento </th>
-                <td mat-cell *matCellDef="let element"> {{element.fechanacimiento}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c5">
-                <th mat-header-cell *matHeaderCellDef> Correo </th>
-                <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c6">
-                <th mat-header-cell *matHeaderCellDef> RUC </th>
-                <td mat-cell *matCellDef="let element"> {{element.ruc}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c7">
-                <th mat-header-cell *matHeaderCellDef> Dirección </th>
-                <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c8">
-                <th mat-header-cell *matHeaderCellDef> Teléfono </th>
-                <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c9">
-                <th mat-header-cell *matHeaderCellDef> Username </th>
-                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="c10">
-                <th mat-header-cell *matHeaderCellDef> Habilitado </th>
-                <td mat-cell *matCellDef="let element"> {{element.enabled}} </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef=" ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10']"></tr>
-            <tr mat-row *matRowDef="let row; columns:  ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10'];"></tr>
-        </table>
+      <div class="card-container">
+        <mat-card *ngFor="let card of dataSource.filteredData" class="card">
+          <mat-card-title>{{ card.nombre  }}</mat-card-title>
+          <mat-card-content>{{ card.correo }}</mat-card-content>
+          <mat-card-content>{{ card.username }}</mat-card-content>
+          <mat-card-content>{{ card.telefono }}</mat-card-content>
+        <div class = "iconos">
+          <mat-icon style="color:#1A74BE" (click)="eliminar(card.id_usuario)">delete</mat-icon>
+          <mat-icon style="color:#1A74BE" [routerLink]="['ediciones1',card.id_usuario]">edit</mat-icon>
+          <mat-icon style="color:#1A74BE" [routerLink]="['listadoid',card.id_usuario]">visibility</mat-icon>
+        </div>
+        </mat-card>
+      </div>
+      <div class = "paginador">
+      <mat-paginator [length]="dataSource.data.length" 
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+      (page)="updatePaginator($event)">
+      </mat-paginator>
+    </div>
     </div>
 </div>

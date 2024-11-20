@@ -1,0 +1,25 @@
+<div>
+    <h2>Reporte: Consejos por Tipo de Desastre</h2>
+  
+    <mat-form-field>
+      <mat-label>Tipo de Desastre</mat-label>
+      <mat-select [(ngModel)]="tipoSeleccionado">
+        <mat-option *ngFor="let tipo of tiposDesastre" [value]="tipo">{{ tipo }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="cargarConsejos()">Consultar</button>
+  
+    <div *ngIf="consejos.length > 0">
+      <h3>Consejos:</h3>
+      <ul>
+        <li *ngFor="let consejo of consejos">
+          <strong>{{ consejo.titulo }}</strong>: {{ consejo.descripcion }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="consejos.length === 0 && consultaRealizada">
+      <p>No se encontraron consejos para el tipo de desastre seleccionado.</p>
+    </div>
+  </div>

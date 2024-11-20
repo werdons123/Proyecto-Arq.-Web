@@ -2,6 +2,9 @@
 <div class="container">
   <div style="text-align: center;margin: 10%;"><h1>Lista de alertas</h1></div>
   <div>
+    <div *ngIf="mensaje" class="notification">
+      {{ mensaje }}
+    </div>
     <div class="card-container">
       <mat-card *ngFor="let card of dataSource.filteredData" class="card">
         <mat-card-title>{{ card.tipo_desastre  }}</mat-card-title>

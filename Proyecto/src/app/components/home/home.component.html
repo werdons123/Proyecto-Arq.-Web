@@ -23,7 +23,8 @@
                         <a class="nav-link m-auto" href="#about">About Us</a>
                         <a class="nav-link m-auto" href="#benefits">Benefits</a> <!-- New button for Benefits -->
                         <a class="nav-link m-auto" href="#contact">Contact us</a>
-                        <button class="btn-sign-up">SIGN UP</button>
+                        <button [routerLink]="['/register']" class="btn btn-sign-up">Register</button>
+                        <button [routerLink]="['/login']" class="btn btn-sign-up">SIGN UP</button>
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
                         <h1 class="display-6 mb-4 lh-base"> Tecnología para salvar vidas en situaciones críticas.</h1>
                         <p class="fs-5">Nuestro producto brinda al usuario alerta y protección en cada momento de emergencia.</p>
                         <div class="d-flex flex-column align-items-center text-center justify-content-between">
-                            <a href="" target="_blank" class="sign-up p-3 mt-3 fs-6">SIGN UP</a>
+                            <a href="" class="sign-up p-3 mt-3 fs-6" [routerLink]="['/login']" >SIGN UP</a>
                              <br>
                         </div>
                     </div>
@@ -48,7 +49,7 @@
     
     <main id="main">
         <section id="about" class="py-5">
-            <div class="container">
+            <div class="container font-family: Varela Round, sans-serif">
                 <div class="row">
                     <div class="col-12 col-lg-5 d-flex justify-content-center" style="font-size:300px; color: #0066AE">
                         <i class="fa-solid fa-handshake-simple"></i>
@@ -171,7 +172,7 @@
     
     
     
-        <section id="contact" class="py-5"  style="background-color: var(--cc-3)">
+        <section id="contact" class="py-5">
             <br>
             <h2 class=" text-center display-4 fw-semibold"><strong> Contact us</strong></h2>
     
@@ -179,7 +180,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card h-100">
-                            <div class="card-body" style="background-color: var(--cc-7)">
+                            <div class="card-body" style="background-color: #dbeffe;">
                                 <h2 class="card-title">Here our latest</h2>
     
                                 <p class="card-text">Find out about our new updates, features,
@@ -197,7 +198,7 @@
     
                     <div class="col-md-6">
                         <div class="card h-100">
-                            <div class="card-body" style="background-color: var(--cc-7)">
+                            <div class="card-body" style="background-color: #dbeffe;">
                                 <h2 class="card-title">Contact Us</h2>
     
                                 <form>
@@ -260,5 +261,8 @@
         </footer>
     
     </main>
-    </body>
     
+    
+    
+    <script src="src/js/index.js"></script>
+    </body>

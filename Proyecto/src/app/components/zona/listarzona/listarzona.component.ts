@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
@@ -31,31 +32,41 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './listarzona.component.css'
 })
 export class ListarzonaComponent implements OnInit{
+  role: string = '';
   dataSource: MatTableDataSource<Zona> = new MatTableDataSource();
   form: FormGroup; 
   noResults: boolean = false; 
   nombrebusqueda:string="";
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private zS: ZonaService,private fb: FormBuilder) {
+  constructor(private zS: ZonaService,private fb: FormBuilder, private loginService: LoginService) {
     this.form = this.fb.group({
       nombrebusqueda: [''],
     });
   }
 
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+
+  isADMIN() {
+    
+    return this.role === 'ADMIN';
+  }
+
+  isCLIENTE() {
+    return this.role === 'CLIENTE';
+  }
+
   ngOnInit(): void {
     this.zS.list().subscribe(data=>{
-      
       this.dataSource=new MatTableDataSource(data);
-      
       this.dataSource.paginator = this.paginator;
-      this.updatePaginator({ pageIndex: 0, pageSize: 10 });
-    
     });
     this.zS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
-      this.updatePaginator({ pageIndex: this.paginator.pageIndex, pageSize: this.paginator.pageSize });
     });
     this.form.get('nombrebusqueda')?.valueChanges.subscribe((value) => {
       this.nombrebusqueda = value; 
@@ -70,19 +81,7 @@ export class ListarzonaComponent implements OnInit{
     this.zS.delete(id).subscribe((data) => {
       this.zS.list().subscribe((data) => {
         this.zS.setList(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.data = data;
-        console.log('Longitud de los datos después de eliminación:', this.dataSource.data.length);
-        if (this.dataSource.data.length === this.paginator.pageSize && this.paginator.pageIndex > 0) {
-          console.log('Página vacía, retrocediendo...');
-          this.paginator.pageIndex = Math.max(0, this.paginator.pageIndex - 1);
-        }
 
-        // Actualizar el paginador con los nuevos datos
-        this.updatePaginator({
-          pageIndex: this.paginator.pageIndex,
-          pageSize: this.paginator.pageSize,
-        });
       });
     });
   }

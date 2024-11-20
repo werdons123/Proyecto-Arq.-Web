@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarsimulacro',
@@ -16,10 +17,24 @@ import { RouterLink } from '@angular/router';
   styleUrl: './listarsimulacro.component.css'
 })
 export class ListarsimulacroComponent implements OnInit{
+  role: string = '';
   dataSource: MatTableDataSource<Simulacro> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private sS: SimulacroService) {}
+  constructor(private sS: SimulacroService, private loginService: LoginService) {}
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+
+  isADMIN() {
+    
+    return this.role === 'ADMIN';
+  }
+
+  isCLIENTE() {
+    return this.role === 'CLIENTE';
+  }
 
   ngOnInit(): void {
     this.sS.list().subscribe(data=>{

@@ -3,6 +3,7 @@ package pe.edu.upc.proyectogrupo1.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.proyectogrupo1.entities.Alerta;
+import pe.edu.upc.proyectogrupo1.entities.ContactoAyuda;
 import pe.edu.upc.proyectogrupo1.repositories.IAlertaRepository;
 import pe.edu.upc.proyectogrupo1.serviceinterfaces.IAlertaService;
 
@@ -23,5 +24,9 @@ public class AlertaServiceImplement implements IAlertaService {
     @Override
     public List<String[]> cantidad() {
         return aR.cantidad();
+    }
+    @Override
+    public Alerta listId(int id) {
+        return aR.findById(id).orElse(new Alerta());
     }
 }

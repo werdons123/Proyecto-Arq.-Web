@@ -1,18 +1,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <div class="container">
-    <div style="text-align: center; margin: 10%;">
-        <h1>{{ Zona_Alerta.zo.nombre_zona }}</h1>
-        <h1>{{ Zona_Alerta.al.tipo_desastre }}</h1>
+  <div class="header">
+    <h1>{{ Zona_Alerta.zo.nombre_zona }}</h1>
+    <h1>{{ Zona_Alerta.al.tipo_desastre }}</h1>
+  </div>
+  <div class="alerta">
+    <div class="alerta-info">
+      <label>Descripción Zona:</label>
+      <p>{{ Zona_Alerta.zo.descripcion }}</p>
     </div>
-    <div class="alerta">
-        <div class="text-container">
-            <p>{{ Zona_Alerta.zo.descripcion }}</p>
-            <p>{{ Zona_Alerta.zo.ubicacion }}</p>
-            <p>{{ Zona_Alerta.al.fecha }}</p>
-            <p>{{ Zona_Alerta.al.hora }}</p>
-        </div>
+    <div class="alerta-info">
+      <label>Ubicación:</label>
+      <p>{{ Zona_Alerta.zo.ubicacion }}</p>
     </div>
+    <div class="alerta-info">
+      <label>Fecha:</label>
+      <p>{{ Zona_Alerta.al.fecha }}</p>
+    </div>
+    <div class="alerta-info">
+      <label>Hora:</label>
+      <p>{{ Zona_Alerta.al.hora }}</p>
+    </div>
+  </div>
 </div>
+
 
 
 

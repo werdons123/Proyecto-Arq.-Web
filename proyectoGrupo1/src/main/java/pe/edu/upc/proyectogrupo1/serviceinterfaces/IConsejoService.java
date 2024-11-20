@@ -11,6 +11,7 @@ public interface IConsejoService {
     public void insert(Consejo consejo);
     public void update(Consejo consejo);
     public void delete(int id_Consejo);
+    public Consejo listId(int id_Consejo);
     public List<Consejo> buscarPorTipo(String tipo);
 
 }

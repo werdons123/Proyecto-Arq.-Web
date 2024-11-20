@@ -28,6 +28,8 @@ export class ListaridzonaComponent implements OnInit{
   constructor(private zS: ZonaService,
     private router: Router,
     private route: ActivatedRoute) {}
+
+  
  
 
   ngOnInit(): void {

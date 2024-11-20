@@ -23,6 +23,11 @@ public class ConsejoServiceImplement implements IConsejoService {
     public void delete(int id_Consejo){cR.deleteById(id_Consejo);}
 
     @Override
+    public Consejo listId(int id_Consejo) {
+        return cR.findById(id_Consejo).orElse(new Consejo());
+    }
+
+    @Override
     public List<Consejo> buscarPorTipo(String tipo) {
         return cR.buscarPorTipo(tipo);
     }

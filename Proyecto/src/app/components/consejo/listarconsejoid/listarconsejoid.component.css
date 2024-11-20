@@ -1,0 +1,58 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 5% auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    color: #0066AE;
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .consejo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .consejo-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f8ff;
+    padding: 10px 15px;
+    border: 1px solid #0066AE;
+    border-radius: 8px;
+  }
+  
+  .consejo-info label {
+    font-weight: 700;
+    color: #0066AE;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  
+  .consejo-info p {
+    margin: 0;
+    color: #333;
+    word-wrap: break-word;
+    text-align: right;
+  }
+  

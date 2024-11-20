@@ -1,81 +1,82 @@
 <div class="register-container">
-    <h2>Registrate</h2>
-    <form [formGroup]="form" (Submit)="insertar()">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
+    <h2 *ngIf="!edicion" >Registrate</h2>
+    <h2 *ngIf="edicion">Configuración de Usuario</h2>
+    <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field  class="example-full-width" *ngIf="edicion && isADMIN()">
             <mat-label>Código</mat-label>
             <input matInput formControlName="hcodigo" />
           </mat-form-field>
-      <mat-radio-group formControlName="tipoUsuario">
-        <mat-radio-button value="usuario">Usuario</mat-radio-button>
-        <mat-radio-button value="manager">Manager</mat-radio-button>
-      </mat-radio-group>
-  
+          <br />
+
       <mat-form-field appearance="fill">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="hnombre" required>
-        <mat-error *ngIf="form.get('nombre')?.hasError('required')">Nombre es obligatorio.</mat-error>
       </mat-form-field>
+      <br />
   
       <mat-form-field appearance="fill">
         <mat-label>Apellidos</mat-label>
         <input matInput formControlName="hapellido" required>
-        <mat-error *ngIf="form.get('apellidos')?.hasError('required')">Apellidos son obligatorios.</mat-error>
       </mat-form-field>
+      <br />
   
       <mat-form-field appearance="fill">
         <mat-label>Fecha de Nacimiento</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="hfecha" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="form.get('fechanacimiento')?.hasError('required')">Fecha de nacimiento es obligatoria.</mat-error>
       </mat-form-field>
+      <br />
   
       <mat-form-field appearance="fill">
         <mat-label>Correo</mat-label>
         <input matInput formControlName="hcorreo" type="email" required>
-        <mat-error *ngIf="form.get('correo')?.hasError('required')">Correo es obligatorio.</mat-error>
-        <mat-error *ngIf="form.get('correo')?.hasError('email')">Correo no es válido.</mat-error>
       </mat-form-field>
+      <br />
   
       <mat-form-field appearance="fill">
         <mat-label>Dirección</mat-label>
         <input matInput formControlName="hdireccion" required>
-        <mat-error *ngIf="form.get('direccion')?.hasError('required')">Dirección es obligatoria.</mat-error>
       </mat-form-field>
+      <br />
   
       <mat-form-field appearance="fill">
         <mat-label>Teléfono</mat-label>
         <input matInput formControlName="htelefono" type="tel" required>
-        <mat-error *ngIf="form.get('telefono')?.hasError('required')">Teléfono es obligatorio.</mat-error>
-        <mat-error *ngIf="form.get('telefono')?.hasError('pattern')">El teléfono debe tener exactamente 9 dígitos.</mat-error>
       </mat-form-field>
+      <br />
   
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
         <input matInput formControlName="husername" required>
-        <mat-error *ngIf="form.get('username')?.hasError('required')">Username es obligatorio.</mat-error>
-        <mat-error *ngIf="form.get('username')?.hasError('minlength')">Username debe tener al menos 3 caracteres.</mat-error>
-        <mat-error *ngIf="form.get('username')?.hasError('uniqueUsername')">Username ya existe.</mat-error>
       </mat-form-field>
+      <br />
   
       <mat-form-field appearance="fill">
         <mat-label>Contraseña</mat-label>
         <input matInput formControlName="hpassword" type="password" required>
-        <mat-error *ngIf="form.get('password')?.hasError('required')">Contraseña es obligatoria.</mat-error>
-        <mat-error *ngIf="form.get('password')?.hasError('minlength')">Contraseña debe tener al menos 8 caracteres.</mat-error>
-        <mat-error *ngIf="form.get('password')?.hasError('pattern')">Contraseña debe incluir letras y números.</mat-error>
       </mat-form-field>
+      <br />
   
       <!-- Campo de RUC, visible solo si "Manager" está seleccionado -->
-      <mat-form-field *ngIf="EsEmpresaSeleccionada()" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>RUC</mat-label>
         <input matInput formControlName="hruc" required>
-        <mat-error *ngIf="form.get('ruc')?.hasError('pattern')">El RUC debe tener exactamente 11 dígitos numéricos.</mat-error>
       </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width" *ngIf="edicion && isADMIN()" class="example-full-width">
+        <mat-label>Estado de Cuenta</mat-label>
+        <mat-select formControlName="hestado">
+            <mat-option *ngFor="let u of estados" [value]="u.value">
+                {{ u.viewValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
   
       <div class="form-footer">
         <!-- Botón de Iniciar Sesión -->
-        <button mat-raised-button color="primary" type="submit">Registrarse</button>
+        <button mat-raised-button color="primary" >Registrarse</button>
     
         <!-- Enlace para cambiar al formulario de registro -->
         <!--<a class="register-link" (click)="goToLogin()">¿Tienes una cuenta? <span>Inicia Sesion</span></a> -->

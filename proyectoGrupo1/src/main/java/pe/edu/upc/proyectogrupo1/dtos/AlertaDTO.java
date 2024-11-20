@@ -4,12 +4,13 @@ import pe.edu.upc.proyectogrupo1.entities.Usuario;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class AlertaDTO {
     private int id_alerta;
     private String tipo_desastre;
     private LocalDate fecha;
-    private Time hora;
+    private LocalTime hora;
     private String descripcion;
     private String nivel_gravedad;
     private Boolean estado;
@@ -39,11 +40,11 @@ public class AlertaDTO {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

@@ -1,0 +1,85 @@
+<div class="register-container">
+<img src="banner.jpeg" class="logo" alt="Logo de la empresa" />
+  <h2>Registrate</h2>
+  <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="hcodigo" />
+        </mat-form-field>
+        <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="hnombre" required>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellidos</mat-label>
+      <input matInput formControlName="hapellido" required>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="hfecha" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Correo</mat-label>
+      <input matInput formControlName="hcorreo" type="email" required>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="hdireccion" required>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="htelefono" type="tel" required>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="husername" required>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="hpassword" type="password" required>
+    </mat-form-field>
+    <br />
+
+    <!-- Campo de RUC, visible solo si "Manager" está seleccionado -->
+    <mat-form-field appearance="fill">
+      <mat-label>RUC</mat-label>
+      <input matInput formControlName="hruc" required>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="example-full-width"  *ngIf="edicion">
+      <mat-label>Estado de Cuenta</mat-label>
+      <mat-select formControlName="hestado">
+          <mat-option *ngFor="let u of estados" [value]="u.value">
+              {{ u.viewValue }}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
+
+    <div class="form-footer">
+      <!-- Botón de Iniciar Sesión -->
+      <button mat-raised-button color="primary" >Registrarse</button>
+  
+      <!-- Enlace para cambiar al formulario de registro -->
+      <!--<a class="register-link" (click)="goToLogin()">¿Tienes una cuenta? <span>Inicia Sesion</span></a> -->
+    </div>
+  </form>
+</div>

@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+  }
+
+  .welcome-text {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+  }
+
+  .logo {
+    width: 200px;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .welcome-text {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .logo {
+      width: 150px;
+    }
+  }

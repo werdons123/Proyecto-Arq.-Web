@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { AlertNotificationService } from '../../../services/alert-notification.service';
 
 @Component({
   selector: 'app-listaralerta',
@@ -16,10 +17,16 @@ import { RouterLink } from '@angular/router';
   styleUrl: './listaralerta.component.css'
 })
 export class ListaralertaComponent implements OnInit{
+
+  mensaje: string | null = null;
+
   dataSource: MatTableDataSource<Alerta> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private aS: AlertaService) {}
+  constructor(
+    private aS: AlertaService,
+    private alertaNotificacionService:AlertNotificationService,
+  ) {}
 
   ngOnInit(): void {
     this.aS.list().subscribe(data=>{
@@ -34,6 +41,15 @@ export class ListaralertaComponent implements OnInit{
       this.dataSource.paginator = this.paginator;
       this.updatePaginator({ pageIndex: this.paginator.pageIndex, pageSize: this.paginator.pageSize });
       
+      });
+
+      this.alertaNotificacionService.alert$.subscribe((message) => {
+        this.mensaje = message;
+    
+        // Ocultar el mensaje después de 5 segundos
+        setTimeout(() => {
+          this.mensaje = null;
+        }, 5000);
       });
      //if (this.paginator) {
     //  this.paginator.pageSize = 10;  // Número de elementos por página inicial

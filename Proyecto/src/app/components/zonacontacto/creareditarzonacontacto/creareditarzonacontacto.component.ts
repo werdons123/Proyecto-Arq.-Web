@@ -76,7 +76,7 @@ export class CreareditarzonacontactoComponent implements OnInit{
       return;
     }
     this.zcS.list().subscribe((data) => {
-      const existe = data.some(item => item.zo.id_Zona === zonaId && item.coay.idContactoAyuda === contactoId);
+      const existe = data.some(item => item.zo.nombre_zona === zonaId && item.coay.nombreInstitucion === contactoId);
       
       if (existe) {
         // Mostrar mensaje de error si ya existe la combinación
@@ -114,8 +114,8 @@ export class CreareditarzonacontactoComponent implements OnInit{
       this.zcS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idZonaContactoAyuda),
-          hzona: new FormControl(data.zo.id_Zona),
-          hcontacto: new FormControl(data.coay.idContactoAyuda),
+          hzona: new FormControl(data.zo.nombre_zona),
+          hcontacto: new FormControl(data.coay.nombreInstitucion),
         });
       });
     }
